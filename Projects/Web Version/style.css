@@ -1,0 +1,142 @@
+.div_one
+ {
+   font-size:150%;
+   font-weight:bold;
+   
+ }
+
+.reminders
+{
+  width:0px;height:0px;
+  background-color:#2dbf4a;
+}
+
+.reminders:hover
+{
+  background-color:#51AF65;
+}
+
+
+ 
+ .pending
+ {
+   width:0px;height:0px;
+   background-color:#f70039;
+ }
+ 
+.pending:hover
+{
+  background-color:#f22659;
+}
+
+.online
+{
+  width:0px;height:0px;
+  background-color:#176ab7;
+}
+.online:hover
+{
+  background-color:#3278BC;
+}
+
+
+.tasks
+{
+  width:0px;height:0px;
+  background-color:#2D2E2F;
+}
+
+.tasks:hover
+{
+  background-color: #3c3f42;
+}
+
+
+
+
+.leftPanel
+{
+  width:0px;height:0px;float:left;
+}
+
+.buttonRed
+{
+ background-color: #f44336; 
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+ cursor: pointer;
+ width:100%;           
+}
+
+.buttonRed:hover
+{
+   background-color:#f22659;           
+}
+
+
+.buttonGreen
+{
+ 
+ background-color:#2dbf4a; 
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+ cursor: pointer;
+ width:100%;           
+}
+
+.buttonGreen:hover
+{
+   background-color:#51AF65;           
+}
+
+
+.buttonBlack
+{
+ 
+ background-color:#2D2E2F;
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+ cursor: pointer;
+ width:100%;           
+}
+
+.buttonBlack:hover
+{
+   background-color: #3c3f42;           
+}
+
+
+.buttonBlue
+{
+ 
+ background-color:#176ab7;
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+ cursor: pointer;
+ width:100%;           
+}
+
+.buttonBlue:hover
+{
+   background-color:#3278BC;           
+}

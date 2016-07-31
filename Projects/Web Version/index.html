@@ -2,51 +2,12 @@
     <head>
         <title>Log in </title>
         <script src="validate.js"></script>
-        <style>
-         body 
-         {
-             background-color: #2D2E2F;
-         }
-         
-         h1
-         {
-             color: white;
-             text-align: center;
-             font-size: 70px;
-         }
-
-         label
-         {
-             color: white;
-             font-size: 15px;
-         }
-
-         h2
-         {
-          color: white;
-          text-align: center;
-          font-size: 25px;
-         }
-
-         .button {
-            background-color: #f44336; 
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 10% 0% 0% 40%;
-            cursor: pointer;
-            
-         }
-        </style>
+        <link rel="stylesheet" type="text/css" href="index.css">
     </head>
         <h1 >AHRM</h1>
         
     <body>
-        <form name="myForm" method=post action="validate.php" onSubmit="return validate()">
+        <form name="myForm"  action="db_connect.php" onSubmit="return validate()">
             <div style="height:40%;width:40%;background-color:#3B5998; margin:10% 0% 0% 30%; color:white; font-size:30">
             <h2 style="mirgin-top:10%;">Please Login with your official candidentials to proceed</h2>
             <br />

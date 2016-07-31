@@ -6,8 +6,6 @@ function validate()
 
    if(username==""){document.getElementById("name").innerHTML="This Field is empty"; x=1;}
    
-   else if(parseInt(username[0])!= NaN){document.getElementById("name").innerHTML="This Field is Invalid"; x=1;}
-
    if(password==""){document.getElementById("password").innerHTML="This Field is empty"; x=1;}
 
 
