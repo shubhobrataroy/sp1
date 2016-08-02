@@ -1,5 +1,25 @@
 <link rel="stylesheet" type="text/css" href="style.css" >
 
+<script>
+
+ function resize()
+ {
+ document.getElementById("head").style.width=window.innerWidth*0.98;
+ document.getElementById("head").style.height=window.innerHeight/4;
+ document.getElementById("body").style.width=window.innerWidth/2.05;
+ document.getElementById("body").style.height=window.innerHeight/3;
+ document.getElementById("body2").style.width=window.innerWidth/2.05;
+ document.getElementById("body2").style.height=window.innerHeight/3;
+ document.getElementById("body3").style.width=window.innerWidth/2.05;
+ document.getElementById("body3").style.height=window.innerHeight/3;
+ document.getElementById("body4").style.width=window.innerWidth/2.05;
+ document.getElementById("body4").style.height=window.innerHeight/3;
+ document.getElementById("body5").style.width=window.innerWidth/2.05;
+ document.getElementById("body5").style.height=window.innerHeight/2;
+ }
+ </script>
+
+<body onresize=resize() onload=resize()>
 <form name="myForm" action="">
   <div id='head' class="div_one" style="width:0px;height:0px;background-color:#2D2E2F">
    <h1 style='color:white;margin-left:40%'>Admin Panel</h1>
@@ -52,20 +72,6 @@
     <table>
    </div>
 </form>
+</body>
 
 
-<script>
- document.getElementById("head").style.width=window.innerWidth*0.98;
- document.getElementById("head").style.height=window.innerHeight/4;
- document.getElementById("body").style.width=window.innerWidth/2.05;
- document.getElementById("body").style.height=window.innerHeight/3;
- document.getElementById("body2").style.width=window.innerWidth/2.05;
- document.getElementById("body2").style.height=window.innerHeight/3;
- document.getElementById("body3").style.width=window.innerWidth/2.05;
- document.getElementById("body3").style.height=window.innerHeight/3;
- document.getElementById("body4").style.width=window.innerWidth/2.05;
- document.getElementById("body4").style.height=window.innerHeight/3;
- document.getElementById("body5").style.width=window.innerWidth/2.05;
- document.getElementById("body5").style.height=window.innerHeight/2;
- 
- </script>
