@@ -6,16 +6,19 @@
  {
  document.getElementById("head").style.width=window.innerWidth*0.98;
  document.getElementById("head").style.height=window.innerHeight/4;
- document.getElementById("body").style.width=window.innerWidth/2.05;
- document.getElementById("body").style.height=window.innerHeight/3;
- document.getElementById("body2").style.width=window.innerWidth/2.05;
- document.getElementById("body2").style.height=window.innerHeight/3;
- document.getElementById("body3").style.width=window.innerWidth/2.05;
- document.getElementById("body3").style.height=window.innerHeight/3;
- document.getElementById("body4").style.width=window.innerWidth/2.05;
- document.getElementById("body4").style.height=window.innerHeight/3;
- document.getElementById("body5").style.width=window.innerWidth/2.05;
- document.getElementById("body5").style.height=window.innerHeight/2;
+//  document.getElementById("body").style.width=window.innerWidth/2.05;
+//  document.getElementById("body").style.height=window.innerHeight/3;
+//  document.getElementById("body2").style.width=window.innerWidth/2.05;
+//  document.getElementById("body2").style.height=window.innerHeight/3;
+//  document.getElementById("body3").style.width=window.innerWidth/2.05;
+//  document.getElementById("body3").style.height=window.innerHeight/3;
+//  document.getElementById("body4").style.width=window.innerWidth/2.05;
+//  document.getElementById("body4").style.height=window.innerHeight/3;
+//  document.getElementById("body5").style.width=window.innerWidth/2.05;
+//  document.getElementById("body5").style.height=window.innerHeight/2;
+ document.getElementById("container").style.width=window.innerWidth*.98;
+ document.getElementById("container").style.height=window.innerHeight*0.8;
+ 
  }
  </script>
 
@@ -37,8 +40,8 @@
     <a href="logout.php?logout=yes" style='color:white;margin:0% 0% 0% 85%;'>Log out </a>
     
   </div>
-  <br />
-<table width=100% height=70%  ><tr><td>
+ 
+<table width=100% height=70% id='container'  ><tr><td>
   <div class='pending' id='body' >
      <h1  style="color:white;text-align:center;font-size:400%;">0</h1>
      <h3  style="color:white;text-align:center">Pending Requests</h3>
