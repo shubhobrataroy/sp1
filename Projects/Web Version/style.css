@@ -7,7 +7,7 @@
 
 .reminders
 {
-  width:0px;height:0px;
+  width:100%;height:100%;
   background-color:#2dbf4a;
 }
 
@@ -20,7 +20,7 @@
  
  .pending
  {
-   width:0px;height:0px;
+   width:100%;height:100%;
    background-color:#f70039;
  }
  
@@ -31,7 +31,7 @@
 
 .online
 {
-  width:0px;height:0px;
+  width:100%;height:100%;
   background-color:#176ab7;
 }
 .online:hover
@@ -42,7 +42,7 @@
 
 .tasks
 {
-  width:0px;height:0px;
+  width:100%;height:100%;
   background-color:#2D2E2F;
 }
 
