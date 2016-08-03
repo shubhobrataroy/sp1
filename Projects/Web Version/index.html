@@ -1,24 +1,43 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Log in </title>
-        <script src="validate.js"></script>
-        <link rel="stylesheet" type="text/css" href="index.css">
-    </head>
-        <h1 >AHRM</h1>
-        
-    <body>
-        <form name="myForm"  action="db_connect_mssql.php" onSubmit="return validate()">
-            <div style="height:40%;width:40%;background-color:#3B5998; margin:10% 0% 0% 30%; color:white; font-size:30">
-            <h2 style="mirgin-top:10%;">Please Login with your official candidentials to proceed</h2>
-            <br />
-            <span style="margin:0% 0% 0% 10%;">Username:</Span> <input type="text" name="username" /> &nbsp <label name="name" id="name"></label>
-            <br />
-            <br />
-            <span style="margin:0% 0% 0% 10%;">Password: &nbsp<input type="text"   name="password" /> &nbsp </Span><label id="password"></label>
-            <br />
-            <input class="button" type="submit" value="Login"/>
-            
-            </div>
-        </form>
-    </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Automated Human System Monitoring System</title>
+  <link rel='stylesheet' href="jquery/jquery1.js">
+  <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+  <script>
+	function validate(){
+		if(document.getElementById("user").value == ""){
+		alert("Username Empty");
+		return false;
+	    }
+		else if(document.getElementById("p").value == ""){
+		alert("Password Empty");
+		return false;
+		}
+	}
+  </script>
+</head>
+
+<body>
+	<center><img src="lg.png" height="200px" width="600px"></img></center>
+	<center><font color="blue">Automated Human Resource Monitoring System</font></center>
+	<br/>
+  <div class="login-card">
+    <h1>Log-in</h1><br>
+  <form name='myForm' method='post' action="validate_form.php" onsubmit="return (validate());">
+    <input type="text" id="user" name="username" placeholder="Username">
+    <input type="password" name="password" id="p" placeholder="Password">
+    <input type="submit" name="login" class="login login-submit" value="login">
+  </form>
+
+  <div class="login-help">
+    <a href="register/register.html">Register</a> • <a href="#">Forgot Password</a>
+  </div>
+</div>
+
+<script src="jquery/jquerylib.js"></script>
+
+</body>
+
 </html>
