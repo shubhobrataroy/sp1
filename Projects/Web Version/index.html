@@ -25,9 +25,13 @@
 	<br/>
   <div class="login-card">
     <h1>Log-in</h1><br>
-  <form name='myForm' method='post' action="validate_form.php" onsubmit="return (validate());">
+  <form name='myForm' action="validate_form.php" onsubmit="return (validate());">
     <input type="text" id="user" name="username" placeholder="Username">
     <input type="password" name="password" id="p" placeholder="Password">
+    <select name="server">
+      <option value="1">Server 1</option>
+      <option value="2">Server 2</option>
+    </select>
     <input type="submit" name="login" class="login login-submit" value="login">
   </form>
 
