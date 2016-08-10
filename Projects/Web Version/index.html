@@ -16,6 +16,20 @@
 		return false;
 		}
 	}
+	function retrive(str) {
+       var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if(xhttp.readyState!=4) document.getElementById('loading').style.visibility='visible';
+
+            else{
+              document.getElementById('loading').style.visibility='hidden';
+              document.getElementById('result').innerHTML= xhttp.responseText;
+          }
+        };
+        xhttp.open("GET",'ajax.php?q='+document.getElementById('user').value,true);
+        xhttp.send();
+    }
+
   </script>
 </head>
 
@@ -26,7 +40,8 @@
   <div class="login-card">
     <h1>Log-in</h1><br>
   <form name='myForm' action="validate_form.php" onsubmit="return (validate());">
-    <input type="text" id="user" name="username" placeholder="Username">
+      <span id="result"></span><img id="loading" name="loading" src="loading.gif"  height="25" width="25" style="visibility: hidden" />
+    <input type="text" id="user" name="username" placeholder="Username" onkeyup="retrive(this.value)">
     <input type="password" name="password" id="p" placeholder="Password">
     <select name="server">
       <option value="1">Server 1</option>

@@ -16,9 +16,10 @@
       echo 'Connection Succeded';
 
 
-      if ($_SESSION['username'] == 'admin') {
-          echo "<script>alert('Admin');window.location('admin.php');</script>";
-      } else
+      if($_SESSION['username']=='admin' | $_SESSION['username']=='Admin' | $_SESSION['username']=='ADMIN' )
+       {
+			echo "<script>window.location='admin.php'</script>";
+	    } else
           echo "<script>alert('employee');window.location='employee/index.php'</script>";
   }
 ?>

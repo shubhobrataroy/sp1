@@ -34,8 +34,6 @@ session_start();
   {
   echo "<script>window.location='admin.php'</script>";
   }
-   else
-          echo "<script>alert('employee');window.location='employee/index.php'</script>";
   }
   else 
     //echo "<script>alert('Username Not found/ Invalid Password. Please Try again'); window.location='index.html';</script>";
