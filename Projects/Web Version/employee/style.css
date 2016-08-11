@@ -1,0 +1,189 @@
+.div_one
+ {
+   font-size:150%;
+   font-weight:bold;
+   
+ }
+
+.reminders
+{
+  width:100%;height:100%;
+  background-color:#2dbf4a;
+}
+
+.reminders:hover
+{
+  background-color:#51AF65;
+}
+
+
+ 
+ .pending
+ {
+   width:100%;height:100%;
+   background-color:#f70039;
+ }
+ 
+.pending:hover
+{
+  background-color:#f22659;
+}
+
+.online
+{
+  width:100%;height:100%;
+  background-color:#176ab7;
+}
+.online:hover
+{
+  background-color:#3278BC;
+}
+
+
+.tasks
+{
+  width:100%;height:100%;
+  background-color:#990000;
+}
+
+.tasks:hover
+{
+  background-color: #cc0000;
+}
+
+.assign_task
+{
+	width:100%;height:100%;
+	background-color:#cc6600;
+}
+.assign_task:hover
+{
+	background-color:#ff9933;
+}
+
+.leftPanel
+{
+  width:0px;height:0px;float:left;
+}
+
+.buttonRed
+{
+ background-color: #f44336; 
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+ cursor: pointer;
+ width:100%;           
+}
+
+.buttonRed:hover
+{
+   background-color:#f22659;           
+}
+
+
+.buttonGreen
+{
+ 
+ background-color:#2dbf4a; 
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+ cursor: pointer;
+ width:100%;           
+}
+
+.buttonGreen:hover
+{
+   background-color:#51AF65;           
+}
+
+
+.buttonBlack
+{
+ 
+ background-color:#2D2E2F;
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+ cursor: pointer;
+ width:100%;           
+}
+
+.buttonBlack:hover
+{
+   background-color: #3c3f42;           
+}
+
+
+.buttonBlue
+{
+ 
+ background-color:#176ab7;
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+ cursor: pointer;
+ width:100%;           
+}
+
+.buttonBlue:hover
+{
+   background-color:#3278BC;           
+}
+
+.buttonBrownie
+{
+ 
+ background-color:#666633;
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+ cursor: pointer;
+ width:100%;           
+}
+
+.buttonBrownie:hover
+{
+   background-color:#999966;           
+}
+
+.buttonBlueman
+{
+ 
+ background-color:#9966ff;
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+ cursor: pointer;
+ width:100%;           
+}
+
+.buttonBlueman:hover
+{
+   background-color:#9999ff;           
+}
