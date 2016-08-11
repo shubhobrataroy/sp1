@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Client_Application"
         xmlns:awe="http://schemas.awesomium.com/winfx" x:Class="Client_Application.MainWindow"
         mc:Ignorable="d"
-        Title="AHRM Client App" Height="700" Width="1300" WindowStartupLocation="CenterScreen">
+        Title="AHRM Client App" Height="700" Width="1300" WindowStartupLocation="CenterScreen" SizeChanged="resized">
     <Grid>
         <Frame HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="Container"/>
         <awe:WebControl x:Name="WebControl"

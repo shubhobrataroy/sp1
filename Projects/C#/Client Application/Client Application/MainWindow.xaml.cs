@@ -24,7 +24,13 @@ namespace Client_Application
         public MainWindow()
         {
             InitializeComponent();
+
+        }
+
+      private void resized(object sender, SizeChangedEventArgs e)
+        {
             
+           
         }
     }
 }
