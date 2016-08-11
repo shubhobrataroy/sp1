@@ -17,6 +17,7 @@
 		}
 	}
 	function retrive(str) {
+	   if(str=='') {document.getElementById('result').innerHTML='No Suggestion'; return; }
        var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
           if(xhttp.readyState!=4) document.getElementById('loading').style.visibility='visible';
@@ -51,7 +52,7 @@
   </form>
 
   <div class="login-help">
-    <a href="register/register.html">Register</a> • <a href="#">Forgot Password</a>
+    <a href="register/index.html">Register</a> • <a href="#">Forgot Password</a>
   </div>
 </div>
 
