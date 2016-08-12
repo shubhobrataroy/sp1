@@ -47,16 +47,17 @@
             <a href="logout.php?logout=yes" style='color:white;margin:0% 0% 0% 85%;'>Log out </a>
        </div>
 
+        <!-- Upper Buttons -->
         <div class="row btn-block col-md-12 " style="margin: auto;margin-top: 0.3%;">
             <input type='button' class='buttonViolate  col-md-2 '    value='Post a notice'  data-toggle="modal" data-target="#postNotice"/>
-            <input type='button' class='buttonBlue  col-md-2'  value='Notifications' />
-            <input type='button' class='buttonBlack   col-md-2'   value='Assign A Task' />
+            <input type='button' class='buttonBlue     col-md-2'     value='Notifications'  data-toggle="modal" data-target="#notification"/>
+            <input type='button' class='buttonBlack   col-md-2'   value='Assign A Task'     data-toggle="modal" data-target="#assignTask"/>
             <input type='button' class='buttonRed col-md-2'  value='Employee Performance Report' />
             <input type='button' class='buttonGreen col-md-2'  value='Manage accounts' />
             <input type='button' class='buttonBlue col-md-2'  value='My Account' />
         </div>
 
-
+        <!-- Metro style tiles -->
       <div class="row col-md-12 col-sm-12 col-xs-12"  style="margin: auto;margin-top: 0.3%;height: 35%">
       <div class='pending col-md-6 col-sm-6 col-xs-6' id='body' >
          <h1 class="text-center" >0</h1>
@@ -80,6 +81,7 @@
           <h4  style="color:white;text-align:center">Assigned Tasks</h4>
        </div>
 
+    <!-- Popup windows -->
     </div>
         <div id="postNotice" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -98,7 +100,54 @@
                 </div>
             </div>
         </div>
+
+
+        <div id="notification" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <a href="#">Server Error</a> <br />
+                        <a href="#">Server Error</a>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="assignTask" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        Employee Type <select class="form-control">
+                            <option>All</option>
+                            <option>Employee</option>
+                            <option>Admin</option>
+                        </select>
+
+                        Username:(Optional)
+                        <input type="text" class="form-control" placeholder="Post notice for specific employee">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+
+
 
 
 </form>
