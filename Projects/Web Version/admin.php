@@ -12,6 +12,42 @@
 
 
  }*/
+
+var refresh=function()
+{
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange= function () {
+        if(xhttp.readyState==4)
+        {
+            $('#pendingNumbers').html(xhttp.response);
+        }
+        else document.getElementById('loading2').style.visibility='visible';
+    }
+
+    xhttp.open("GET",'ajax.php?q=&username=&pending=true',true);
+    xhttp.send();
+
+}
+
+setInterval(refresh,3000);
+
+$(document).ready(function() {
+    $('#body').click(function () {
+        $('#pendingReq').modal('show');
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange= function () {
+            if(xhttp.readyState==4)
+            {
+                $('#pendingContainer').html(xhttp.response);
+            }
+            else document.getElementById('loading2').style.visibility='visible';
+        }
+
+        xhttp.open("GET",'ajax.php?q=&username=&pending=info',true);
+        xhttp.send();
+
+    });
+});
  </script>
 
 
@@ -31,7 +67,7 @@
 <body  >
 <form name="myForm" action="">
     <div class="row">
-        <div id='head' class="col-sm-12" style="background-color:#2D2E2F">
+        <div id='head' class="col-sm-12" style="background-color:#2D2E2F" >
             <h1 class="text-center">Admin Panel</h1>
                     <?php
 
@@ -60,7 +96,7 @@
         <!-- Metro style tiles -->
       <div class="row col-md-12 col-sm-12 col-xs-12"  style="margin: auto;margin-top: 0.3%;height: 35%">
       <div class='pending col-md-6 col-sm-6 col-xs-6' id='body' >
-         <h1 class="text-center" >0</h1>
+         <h1 class="text-center" id="pendingNumbers">0</h1>
          <h4  style="color:white;text-align:center">Pending Requests</h4>
       </div>
 
@@ -152,6 +188,23 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success btn-lg">Post</button>
+                        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="pendingReq" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body" id="pendingContainer">
+
+                    </div>
+                    <div class="modal-footer">
                         <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
                     </div>
                 </div>
