@@ -1,25 +1,24 @@
 <link rel="stylesheet" type="text/css" href="style.css" >
+<link rel="stylesheet" href="css/bootstrap.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<meta name="viewport" content="width=device-width">
 
+<style>
+    h1{
+        color:white;
+        font-size: 400%;
+    }
+    h4
+    {
+        color:white;
+        font-size: 100%;
+    }
+
+</style>
+ 
 <script>
 
- function resize()
- {
- document.getElementById("head").style.width=window.innerWidth*0.98;
- document.getElementById("head").style.height=window.innerHeight/4;
-//  document.getElementById("body").style.width=window.innerWidth/2.05;
-//  document.getElementById("body").style.height=window.innerHeight/3;
-//  document.getElementById("body2").style.width=window.innerWidth/2.05;
-//  document.getElementById("body2").style.height=window.innerHeight/3;
-//  document.getElementById("body3").style.width=window.innerWidth/2.05;
-//  document.getElementById("body3").style.height=window.innerHeight/3;
-//  document.getElementById("body4").style.width=window.innerWidth/2.05;
-//  document.getElementById("body4").style.height=window.innerHeight/3;
-//  document.getElementById("body5").style.width=window.innerWidth/2.05;
-//  document.getElementById("body5").style.height=window.innerHeight/2;
- document.getElementById("container").style.width=window.innerWidth*.98;
- document.getElementById("container").style.height=window.innerHeight*0.8;
- startTime();
- }
  function startTime() {
     var today = new Date();
     var h = today.getHours();
@@ -37,96 +36,149 @@ function checkTime(i) {
     return i;
 }
  </script>
-
-<body onresize=resize() onload=resize()>
-<form name="myForm" action="">
-  <div id='head' class="div_one" style="width:0px;height:0px;background-color:#660033">
-   <h1 style='color:white;margin-left:40%'>Employee Panel</h1>
-<?php 
-
- session_start();
- if(sizeof($_SESSION["username"])==0)
-  {
-    session_destroy();
-    echo "<script>alert('Sorry You are not allowed ');window.location='index.html'</script>";
-  }
- echo "<label style='color:white;margin:0% 0% 0% 85%;'>Loged as ".$_SESSION["username"]."</label>";
-?>
-    <br />
-    <a href="logout.php?logout=yes" style='color:white;margin:0% 0% 0% 85%;'>Log out </a>
-    
-  </div>
  
-<table width=100% height="70%" >
-<td>
-	<table width='10%'>
-      <tr>
-		<td>
-			<input type='button' class='buttonRed'    value='View Notice Board' />
-		</td>
-		<td>
-			<input type='button' class='buttonGreen'   value='View Task History' />
-		</td>
-		<td>
-			<input type='button' class='buttonBlue'   value='Download Task Document' />
-		</td>
-		<td>
-			<input type='button' class='buttonBrownie'   value='Employee Profile' />
-		</td>
-		<td>
-			<input type='button' class='buttonBlueman'   value=Time  id="txt1"/>
-		</td>
-		<td>
-			<input type='button' class='buttonRed'    value='Contact Info' />
-		</td>
-		<td>
-			<input type='button' class='buttonGreen'    value='Check Unavailable ' />
-		</td>
+
+<body onload="startTime()">
+	<div class="row">
+	<form name="myForm" action="">
+		<div id='head' class="col-sm-12" style="background-color:#660033">
+			<h1 style='color:white;margin-left:35%'>Employee Panel</h1>
+				<?php 
+					session_start();
+					if(sizeof($_SESSION["username"])==0)
+					{
+						session_destroy();
+						echo "<script>alert('Sorry You are not allowed ');window.location='index.html'</script>";
+					}
+					echo "<label style='color:white;margin:0% 0% 0% 85%;'>Loged as ".$_SESSION["username"]."</label>";
+				?>
+			<br/>
+			<a href="logout.php?logout=yes" style='color:red;margin:0% 0% 0% 85%;'>Log out </a>
+		</div>
+ 
+
+	 <div class="row btn-block col-md-12 " style="margin: auto;margin-top: 0.3%;">
+			<input type='button' class='buttonRed col-md-2'    value='View Notice Board' id="notice" data-toggle="modal" data-target="#viewnotice"/>
+			<input type='button' class='buttonGreen col-md-2'   value='View Task History' id="notice" data-toggle="modal" data-target="#viewtask" />
+			<input type='button' class='buttonBlue col-md-2'   value='Download Task Document' id="notice" data-toggle="modal" data-target="#downloadtask" />
+			<input type='button' class='buttonBrownie col-md-2'   value='Employee Profile' id="notice" data-toggle="modal" data-target="#profile"/>
+			<input type='button' class='buttonBlueman col-md-2'   value=Time  id="txt1" id="notice" />
+			<input type='button' class='buttonRed col-md-2'   value="Mark Unavailable" />
+			<marquee behavior="scroll" direction="Left" color="red">This is Automated Human Resource Monitoring System (AHRMS). All Employees welcome ....... </marquee>
+	</div>
 		
-	</tr>
-	<tr>
-		<marquee behavior="scroll" direction="Left" color="red" id="scrolltext" font-size=100%>This is Automated Human Resource Monitoring System (AHRMS). All Employees welcome ....... </marquee>
-	</tr>
-    <table>
-</td>
-<td>
-	<table width=90% height=70% id='container'>
-<tr>
-	<td>
-	<div class="assign_task" id='body1'>
-     <h1  style="color:white;text-align:center;font-size:400%;">0</h1>
-     <h3  style="color:white;text-align:center;">Incomplete Tasks</h3>
-	</div>
-  </td>
-   
-   <td>
-	<div class="online" id='body2' >
-      <h1  style="color:white;text-align:center;font-size:400%;">0</h1>
-      <h3  style="color:white;text-align:center">Online Users</h3>
-	</div>
-	</td>
-</tr>
-    
-<tr>
-	<td>
-		<div class="reminders" id='body3'>
-		<h1  style="color:white;text-align:center;font-size:400%;">0</h1>
-		<h3  style="color:white;text-align:center">Reminders</h3>
-   </div>
-   </td>
+	<div class="row col-md-12 col-sm-12 col-xs-12"  style="margin: auto;margin-top: 0.3%;height: 35%">
+		<div class="assign_task col-md-6 col-sm-6 col-xs-6" id='body'>
+			<h1  class="text-center">0</h1>
+			<h4  style="color:white;text-align:center">Incomplete Tasks</h3>
+		</div>
 
-   <td>
-   <div class='tasks' id='body4'>
-		<h1  style="color:white;text-align:center;font-size:400%;">0</h1>
-		<h3  style="color:white;text-align:center">Assigned Tasks</h3>    
-   </div> 
-   </td>
- </tr>
-</table>
-</td>
+		<div class="online col-md-6 col-sm-6 col-xs-6" id='body2'>
+			<h1  style="color:white;text-align:center;">0</h1>
+			<h4  style="color:white;text-align:center;">Online Users</h3>
+		</div>
 
-</table>
+		<div class="reminders col-md-6 col-sm-6 col-xs-6" id='body3' >
+			<h1  style="color:white;text-align:center;">0</h1>
+			<h3  style="color:white;text-align:center">Reminders</h3>
+		</div>
 
+		<div class='tasks col-md-6 col-sm-6 col-xs-6' id='body4'>
+			<h1  style="color:white;text-align:center;"">0</h1>
+			<h4  style="color:white;text-align:center">Assigned Tasks</h4>  
+		</div>
+	</div>		
+    <!--PopUP-->
+	<div id="viewnotice" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Notices</h4>
+                    </div>
+                    <div class="modal-body">
+						<span></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info btn-lg">Post</button>
+                        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+     </div>
+	 <div id="viewtask" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <span></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+     </div>
+	 <div id="downloadtask" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                       <a href="#">Server Error</a> <br />
+                       <a href="#">Server Error</a>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+     </div>
+	 <div id="profile" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+					   Name:<span></span> <br/>
+					   Email:<span></span> <br/>
+					   Designation:<span></span><br/>
+					   Age:<span></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+     </div>
+	 <div id="profile" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+					   Name:<span></span> <br/>
+					   Email:<span></span> <br/>
+					   Designation:<span></span><br/>
+					   Age:<span></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+     </div>
+
+</div>
 </form>
 </body>
 
