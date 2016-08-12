@@ -53,7 +53,7 @@ function checkTime(i) {
 					echo "<label style='color:white;margin:0% 0% 0% 85%;'>Loged as ".$_SESSION["username"]."</label>";
 				?>
 			<br/>
-			<a href="logout.php?logout=yes" style='color:red;margin:0% 0% 0% 85%;'>Log out </a>
+			<a href="../logout.php?logout=yes" style='color:red;margin:0% 0% 0% 85%;'>Log out </a>
 		</div>
  
 
