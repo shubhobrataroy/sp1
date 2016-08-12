@@ -5,6 +5,11 @@
   <title>Automated Human System Monitoring System</title>
   <link rel='stylesheet' href="jquery/jquery1.js">
   <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="register/js/validate.js"></script>
+
   <script>
 	function validate(){
 		if(document.getElementById("user").value == ""){
@@ -52,9 +57,50 @@
   </form>
 
   <div class="login-help">
-    <a href="register/index.html">Register</a> • <a href="#">Forgot Password</a>
+    <a href="#" data-toggle="modal" data-target="#Register">Register</a> • <a href="#">Forgot Password</a>
   </div>
 </div>
+
+
+    <div id="Register" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Register</h4>
+          </div>
+          <div class="modal-body" >
+              <form action="register/register.php" id="registrationForm" onsubmit="return validateRegistration()">
+
+                  <h3 >Your Personal Information</h3>
+                  <div id="usernameAlert"></div><img id="loading2" name="loading2" src="loading.gif"  height="25" width="25" style="visibility: hidden" />
+                  <input class="form-control" type="text" name="username2" id="username2" value="" placeholder="Your Desired Username" onkeyup="validateRegistration()" /> <br>
+                  <input class="form-control" type="text" name="email" id="email" value="" onkeyup="validateRegistration()" placeholder="Your E-mail Address">
+                  <div id="emailAlert"></div>
+                  <h3 >Your Password</h3>
+                  <input type="password" name="password" id="password" value="" placeholder="Your Password"><br/>
+                  <input type="password" name="confirm"  id="confirm" value="" onkeyup="validateRegistration()" onfocusout="validateRegistration()" placeholder="Confirm Password">
+                  <div id="passwordAlert"></div>
+
+                  <h3 >Your Address</h3>
+                  <select class="form-control">
+                    <option value="">Dhaka</option>
+                    <option value="">Chittagong</option>
+                    <option value="">N/A</option>
+                  </select><br/>
+                  <textarea class="form-control" name="address" id="address" placeholder="Your Full Address"></textarea>
+                  <div id="addressAlert"></div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-info btn-lg">Register</button>
+                  <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Cancel</button>
+                </div>
+
+                </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
 <script src="jquery/jquerylib.js"></script>
 

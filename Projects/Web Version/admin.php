@@ -91,7 +91,17 @@
                         <h4 class="modal-title">Modal Header</h4>
                     </div>
                     <div class="modal-body">
-                        <textarea placeholder="Your Notice" id="noticeText" style="width: 100%"></textarea>
+                        Employee Type <select class="form-control">
+                            <option>All</option>
+                            <option>Employee</option>
+                            <option>Admin</option>
+                        </select>
+                        <br />
+                        Username:(Optional)
+                        <input type="text" class="form-control" placeholder="Post notice for specific employee" />
+                        <br />
+                        Notice:
+                        <textarea class="form-control" placeholder="Write notice here"></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-info btn-lg">Post</button>
@@ -133,11 +143,15 @@
                             <option>Employee</option>
                             <option>Admin</option>
                         </select>
-
-                        Username:(Optional)
-                        <input type="text" class="form-control" placeholder="Post notice for specific employee">
+                        <br />
+                        Username:
+                        <input type="text" class="form-control" placeholder="Post notice for specific employee" />
+                        <br />
+                        Task Desciption:
+                        <textarea class="form-control" placeholder="Write task description here here"></textarea>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-success btn-lg">Post</button>
                         <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
                     </div>
                 </div>
