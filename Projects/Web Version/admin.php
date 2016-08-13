@@ -28,12 +28,20 @@
                     <?php
 
                      session_start();
-                     if(sizeof($_SESSION["username"])==0)
+                     if(sizeof($_SESSION["username"])==0 )
                       {
                         session_destroy();
                         echo "<script>alert('Sorry You are not allowed ');window.location='index.html'</script>";
                       }
-                     echo "<label style='color:white;margin:0% 0% 0% 85%;'><h5>Looged as ".$_SESSION["username"]."</h5></label>";
+
+                      $user=strtolower($_SESSION["username"]);
+                      if($user != 'admin')
+                      {
+                          session_destroy();
+                          echo "<script>alert('Sorry You are not allowed ');window.location='index.html'</script>";
+                      }
+
+                    echo "<label style='color:white;margin:0% 0% 0% 85%;'><h5>Looged as ".$_SESSION["username"]."</h5></label>";
                     ?>
                 <br />
             <a href="logout.php?logout=yes" style='color:white;margin:0% 0% 0% 85%;'>Log out </a>
