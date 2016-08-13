@@ -60,8 +60,12 @@ $(document).ready(function() {
 });
 
 
-    function accept(username,password)
+function accept(username,password)
     {
         runAjaxcommand('','','',username,'',password);
-        $('#body').click();
     }
+
+function reject(username)
+{
+    runAjaxcommand('','','','',username,'');
+}

@@ -69,6 +69,12 @@ else if($_GET['accept']!='')
     $res= mysql_query($query) or die('Error 1');
 }
 
+else if($_GET['reject']!='')
+{
+    $query = "DELETE FROM registration WHERE uname='".$_GET['reject']."'";
+    $res= mysql_query($query) or die('Error 1');
+}
+
 
 
 ?>

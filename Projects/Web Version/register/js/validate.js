@@ -13,7 +13,7 @@ function validateRegistration()
        else document.getElementById('loading2').style.visibility='visible';
      }
 
-     xhttp.open("GET",'ajax.php?q=&username='+document.getElementById('username2').value,true);
+     xhttp.open("GET",'ajax.php?q=&username='+document.getElementById('username2').value+'&pending=&accept=&reject=&password',true);
      xhttp.send();
 
      //email

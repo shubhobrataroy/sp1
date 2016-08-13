@@ -244,3 +244,5 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 Projects/Web Version/js/w3data.js
+Projects/Web Version/employee.php
+Projects/Web Version/index2.html
