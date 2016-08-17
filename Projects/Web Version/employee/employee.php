@@ -16,12 +16,7 @@
     }
 
 </style>
-
-<?php
-	$notice = array("No more games.....");
-	session_start();
-?>
-
+ 
 <script>
 
  function startTime() {
@@ -102,13 +97,10 @@ function checkTime(i) {
                         <h4 class="modal-title">Notices</h4>
                     </div>
                     <div class="modal-body">
-						<center><h3>Notices</h3><center>
-						1. <span id="notice_emp1"><?php echo $notice[0]; ?></span><br/>
-						2. <span id="notice_emp2"></span><br/>
-						3. <span id="notice_emp3"></span><br/>
-						4. <span id="notice_emp4"></span><br/>
+						<span></span>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-info btn-lg">Post</button>
                         <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -138,10 +130,8 @@ function checkTime(i) {
                         <h4 class="modal-title">Modal Header</h4>
                     </div>
                     <div class="modal-body">
-                       <center><h3>Assigned Tasks</h3><center>
-					   <a href="#" id="ln1">Link1</a><br/>
-					   <a href="#" id="ln2">Link2</a><br/>
-					   <a href="#" id="ln3">Link3</a><br/>
+                       <a href="#">Server Error</a> <br />
+                       <a href="#">Server Error</a>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
@@ -157,7 +147,6 @@ function checkTime(i) {
                         <h4 class="modal-title">Modal Header</h4>
                     </div>
                     <div class="modal-body">
-					   <center><h3>Profile</h3></center>
 					   Name:<span></span> <br/>
 					   Email:<span></span> <br/>
 					   Designation:<span></span><br/>
@@ -169,7 +158,25 @@ function checkTime(i) {
                 </div>
             </div>
      </div>
-	 
+	 <div id="profile" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+					   Name:<span></span> <br/>
+					   Email:<span></span> <br/>
+					   Designation:<span></span><br/>
+					   Age:<span></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+     </div>
 
 </div>
 </form>

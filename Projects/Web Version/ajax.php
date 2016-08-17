@@ -75,6 +75,21 @@ else if($_GET['reject']!='')
     $res= mysql_query($query) or die('Error 1');
 }
 
+else
+{
+    if($_GET['notice']!='')
+    {
+
+        $query = "INSERT INTO notice(notice, username, eType, date) Values". "('".$_GET['notice']."','".$_GET['empName']."','".$_GET['empType']."','".date('Y-m-d H:i:s')."')";
+        $res= mysql_query($query,$link) ;
+        //or die('<script>alert("Notice posting failed")</script>');
+
+           $x= mysql_error($link);
+
+        echo '<script type="text/javascript">alert("'.$link.'");</script>';
+
+    }
+}
 
 
 ?>

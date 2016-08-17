@@ -82,6 +82,7 @@
        </div>
 
     <!-- Popup windows -->
+   <form name="noticeContainer" >
     </div>
         <div id="postNotice" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -91,26 +92,27 @@
                         <h4 class="modal-title">Modal Header</h4>
                     </div>
                     <div class="modal-body">
-                        Employee Type <select class="form-control">
+                        Employee Type <select id="noticeTo" name="noticeTo" class="form-control">
                             <option>All</option>
                             <option>Employee</option>
                             <option>Admin</option>
                         </select>
                         <br />
-                        Username:(Optional)
-                        <input type="text" class="form-control" placeholder="Post notice for specific employee" />
+
+                        Username:(Optional) <img id="loading" name="loading" src="loading.gif"  height="25" width="25" style="visibility: hidden" /><span id="suggestor"></span>
+                        <input type="text" name="username_notice" id="username_notice" class="form-control" placeholder="Post notice for specific employee" onkeyup="retrive(this.value)"/>
                         <br />
                         Notice:
-                        <textarea class="form-control" placeholder="Write notice here"></textarea>
+                        <textarea class="form-control" placeholder="Write notice here" name="notice" id="notice"></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-info btn-lg">Post</button>
+                        <button type="button" class="btn btn-info btn-lg" data-dismiss="modal" onclick=postNotice()>Post</button>
                         <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
-
+</form>
 
         <div id="notification" class="modal fade" role="dialog">
             <div class="modal-dialog">
