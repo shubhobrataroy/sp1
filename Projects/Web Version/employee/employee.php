@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.js"></script>
+<script src="ajax.js"></script>
 <meta name="viewport" content="width=device-width">
 
 <style>
@@ -16,7 +17,12 @@
     }
 
 </style>
- 
+
+<?php
+	$notice = array("No more games.....");
+	session_start();
+?>
+
 <script>
 
  function startTime() {
@@ -44,7 +50,6 @@ function checkTime(i) {
 		<div id='head' class="col-sm-12" style="background-color:#660033">
 			<h1 style='color:white;margin-left:35%'>Employee Panel</h1>
 				<?php 
-					session_start();
 					if(sizeof($_SESSION["username"])==0)
 					{
 						session_destroy();
@@ -74,8 +79,8 @@ function checkTime(i) {
 		</div>
 
 		<div class="online col-md-6 col-sm-6 col-xs-6" id='body2'>
-			<h1  style="color:white;text-align:center;">0</h1>
-			<h4  style="color:white;text-align:center;">Online Users</h3>
+			<h1  style="color:white;text-align:center;" id="noticenumber">0</h1>
+			<h4  style="color:white;text-align:center;">Notices</h3>
 		</div>
 
 		<div class="reminders col-md-6 col-sm-6 col-xs-6" id='body3' >
@@ -96,11 +101,10 @@ function checkTime(i) {
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Notices</h4>
                     </div>
-                    <div class="modal-body">
-						<span></span>
+                    <div class="modal-body" id="noticecontainer">
+						
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-info btn-lg">Post</button>
                         <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -130,8 +134,7 @@ function checkTime(i) {
                         <h4 class="modal-title">Modal Header</h4>
                     </div>
                     <div class="modal-body">
-                       <a href="#">Server Error</a> <br />
-                       <a href="#">Server Error</a>
+                       
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
@@ -147,10 +150,7 @@ function checkTime(i) {
                         <h4 class="modal-title">Modal Header</h4>
                     </div>
                     <div class="modal-body">
-					   Name:<span></span> <br/>
-					   Email:<span></span> <br/>
-					   Designation:<span></span><br/>
-					   Age:<span></span>
+					   
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
@@ -158,25 +158,7 @@ function checkTime(i) {
                 </div>
             </div>
      </div>
-	 <div id="profile" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
-                    </div>
-                    <div class="modal-body">
-					   Name:<span></span> <br/>
-					   Email:<span></span> <br/>
-					   Designation:<span></span><br/>
-					   Age:<span></span>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-     </div>
+	 
 
 </div>
 </form>
