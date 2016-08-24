@@ -63,10 +63,10 @@ function checkTime(i) {
  
 
 	 <div class="row btn-block col-md-12 " style="margin: auto;margin-top: 0.3%;">
-			<input type='button' class='buttonRed col-md-2'    value='View Notice Board' id="notice" data-toggle="modal" data-target="#viewnotice"/>
+			<input type='button' class='buttonRed col-md-2'    value='View Notice Board' id="notice" data-toggle="modal" data-target="#viewnotice" />
 			<input type='button' class='buttonGreen col-md-2'   value='View Task History' id="notice" data-toggle="modal" data-target="#viewtask" />
 			<input type='button' class='buttonBlue col-md-2'   value='Download Task Document' id="notice" data-toggle="modal" data-target="#downloadtask" />
-			<input type='button' class='buttonBrownie col-md-2'   value='Employee Profile' id="notice" data-toggle="modal" data-target="#profile"/>
+			<input type='button' class='buttonBrownie col-md-2'   value='Employee Profile' id="profilebtn" data-toggle="modal" data-target="#viewprofile" />
 			<input type='button' class='buttonBlueman col-md-2'   value=Time  id="txt1" id="notice" />
 			<input type='button' class='buttonRed col-md-2'   value="Mark Unavailable" />
 			<marquee behavior="scroll" direction="Left" color="red">This is Automated Human Resource Monitoring System (AHRMS). All Employees welcome ....... </marquee>
@@ -142,14 +142,14 @@ function checkTime(i) {
                 </div>
             </div>
      </div>
-	 <div id="profile" class="modal fade" role="dialog">
+	 <div id="viewprofile" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Modal Header</h4>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" id="profilecontainer">
 					   
                     </div>
                     <div class="modal-footer">
