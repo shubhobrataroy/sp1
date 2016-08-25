@@ -43,6 +43,14 @@ if($_GET['q']!='') //Username Suggestions are retrived from here
     {
         getTaskDetails();
     }
+
+    else if ($_GET['q']=='setStatus')
+    {
+         $query="UPDATE details SET status='".$_GET['status']."'WHERE username='".$_GET['username']."';";
+        mysql_query($query) or die("Could not connect to database ");
+
+        if($_GET['status']=='offline') session_destroy();
+    }
     else{
     $res = mysql_query("select username from users.details where username like '" . $_GET["q"] . "%';") or die("Could not connect to database ");
     if (sizeof($res) == 0) echo 'No suggestions';

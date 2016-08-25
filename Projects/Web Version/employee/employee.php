@@ -3,6 +3,7 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="ajax.js"></script>
+<script src="online.js"></script>
 <meta name="viewport" content="width=device-width">
 
 <style>
@@ -55,7 +56,7 @@ function checkTime(i) {
 						session_destroy();
 						echo "<script>alert('Sorry You are not allowed ');window.location='index.html'</script>";
 					}
-					echo "<label style='color:white;margin:0% 0% 0% 85%;'>Loged as ".$_SESSION["username"]."</label>";
+					echo "<label style='color:white;margin:0% 0% 0% 85%;'>Loged as <span id='currentUser'>".$_SESSION["username"]."</span></label>";
 				?>
 			<br/>
 			<a href="../logout.php?logout=yes" style='color:red;margin:0% 0% 0% 85%;'>Log out </a>
@@ -89,7 +90,7 @@ function checkTime(i) {
 		</div>
 
 		<div class='tasks col-md-6 col-sm-6 col-xs-6' id='body4'>
-			<h1  style="color:white;text-align:center;" id="tasknumber">0</h1>
+			<h1  style="color:white;text-align:center;"">0</h1>
 			<h4  style="color:white;text-align:center">Assigned Tasks</h4>  
 		</div>
 	</div>		
@@ -110,15 +111,15 @@ function checkTime(i) {
                 </div>
             </div>
      </div>
-	 <div id="viewassignedtask" class="modal fade" role="dialog">
+	 <div id="viewtask" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Modal Header</h4>
                     </div>
-                    <div class="modal-body" id="assigntask">
-                        
+                    <div class="modal-body">
+                        <span></span>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>

@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width">
 <script src="ajax.js">
 </script>
+<script src="online.js"></script>
 
 
 <style>
@@ -41,7 +42,7 @@
                           echo "<script>alert('Sorry You are not allowed ');window.location='index.html'</script>";
                       }
 
-                    echo "<label style='color:white;margin:0% 0% 0% 85%;'><h5>Looged as ".$_SESSION["username"]."</h5></label>";
+                    echo "<label style='color:white;margin:0% 0% 0% 85%;'><h5>Looged as <span id='currentUser'>".$_SESSION["username"]."</span></h5></label>";
                     ?>
                 <br />
             <a href="logout.php?logout=yes" style='color:white;margin:0% 0% 0% 85%;'>Log out </a>
@@ -65,7 +66,7 @@
       </div>
 
        <div class="online col-md-6 col-sm-6 col-xs-6" id='body2' >
-          <h1  style="color:white;text-align:center; ">0</h1>
+          <h1  style="color:white;text-align:center; " id="onlineNumber">0</h1>
           <h4  style="color:white;text-align:center">Online Users</h4>
        </div>
 
@@ -194,6 +195,22 @@
             </div>
         </div>
 
+        <div id="onlineNumbersPopup" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body" id="onlineContainer">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 </div>
 
