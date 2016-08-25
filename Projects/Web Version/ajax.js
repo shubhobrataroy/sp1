@@ -52,11 +52,31 @@ function runAjaxcommand(q,username,pending,accept,reject,password,notice,empType
         }
         else document.getElementById('loading2').style.visibility='visible';
     }
-    var command='ajax.php?q='+q+'&username='+username+'&pending='+pending+'&accept='+accept+'&reject='+reject+'&password='+password+'&notice='+notice+'&empType='+empType+'&empName='+empName;
+    var command='ajax.php?q='+q+'&username='+username+'&pending='+pending+'&accept='+accept+'&reject='+reject+'&password='+password+'&notice='+notice+'&empType='+empType+'&empName='+empName+'&task=';
 
     xhttp.open("GET",command,true);
     xhttp.send();
 }
+
+
+function runAjaxcommand(q,username,pending,accept,reject,password,notice,empType,empName,task)
+{
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange= function () {
+        if(xhttp.readyState==4)
+        {
+            $('#pendingNumbers').html(xhttp.response);
+        }
+        else document.getElementById('loading2').style.visibility='visible';
+    }
+    var command='ajax.php?q='+q+'&username='+username+'&pending='+pending+'&accept='+accept+'&reject='+reject+'&password='+password+'&notice='+notice+'&empType='+empType+'&empName='+empName+'&task='+task;
+
+    xhttp.open("GET",command,true);
+    xhttp.send();
+}
+
+
 
 $(document).ready(function() {
     $('#body').click(function () {
@@ -107,17 +127,37 @@ function postNotice()
 }
 
 
-function retrive(str) {
-    if(str=='') {document.getElementById('suggestor').innerHTML='No Suggestion'; return; }
+function postTask()
+{
+
+    var task = document.getElementById('task').value;
+    var username = document.getElementById('username_task').value;
+
+
+
+
+    if(task!='') {
+        if(username=='') username='All';
+
+        runAjaxcommand('', '', '', '', '', '', '', '', username,task);
+    }
+
+    else
+        alert('Notice field is empty');
+}
+
+
+function retrive(str,suggestor,loading) {
+    if(str=='') {document.getElementById(suggestor).innerHTML='No Suggestion'; return; }
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-        if(xhttp.readyState!=4) document.getElementById('loading').style.visibility='visible';
+        if(xhttp.readyState!=4) document.getElementById(loading).style.visibility='visible';
 
         else{
-            document.getElementById('loading').style.visibility='hidden';
-            document.getElementById('suggestor').innerHTML= xhttp.responseText;
+            document.getElementById(loading).style.visibility='hidden';
+            document.getElementById(suggestor).innerHTML= xhttp.responseText;
         }
     };
-    xhttp.open("GET",'ajax.php?q='+document.getElementById('username_notice').value,true);
+    xhttp.open("GET",'ajax.php?q='+str,true);
     xhttp.send();
 }

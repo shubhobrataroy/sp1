@@ -86,7 +86,17 @@ else
 
            $x= mysql_error($link);
 
-        echo '<script type="text/javascript">alert("'.$link.'");</script>';
+    }
+
+    else if($_GET['task']!='')
+    {
+
+        $query = "INSERT INTO task(assigned_to, assigned_from, description, status) VALUES ('".$_GET['empName']."','admin','".$_GET['task']."','Assigned');";
+        $res= mysql_query($query,$link) ;
+        //or die('<script>alert("Notice posting failed")</script>');
+
+        $x= mysql_error($link);
+        echo $x;
 
     }
 }

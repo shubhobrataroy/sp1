@@ -23,7 +23,7 @@
 <body  >
 <form name="myForm" action="">
     <div class="row">
-        <div id='head' class="col-sm-12" style="background-color:#2D2E2F" >
+        <div id='head' class="col-sm-12" style="background-color:#2D2E2F;" >
             <h1 class="text-center">Admin Panel</h1>
                     <?php
 
@@ -100,7 +100,7 @@
                         <br />
 
                         Username:(Optional) <img id="loading" name="loading" src="loading.gif"  height="25" width="25" style="visibility: hidden" /><span id="suggestor"></span>
-                        <input type="text" name="username_notice" id="username_notice" class="form-control" placeholder="Post notice for specific employee" onkeyup="retrive(this.value)"/>
+                        <input type="text" name="username_notice" id="username_notice" class="form-control" placeholder="Post notice for specific employee" onkeyup="retrive(this.value,'suggestor','loading')"/>
                         <br />
                         Notice:
                         <textarea class="form-control" placeholder="Write notice here" name="notice" id="notice"></textarea>
@@ -146,14 +146,14 @@
                             <option>Admin</option>
                         </select>
                         <br />
-                        Username:
-                        <input type="text" class="form-control" placeholder="Post notice for specific employee" />
+                        Username: <img id="loading2" name="loading" src="loading.gif"  height="25" width="25" style="visibility: hidden" /><span id="suggestor2"></span>
+                        <input id="username_task" type="text" class="form-control" placeholder="Post notice for specific employee" onkeyup="retrive(this.value,'suggestor2','loading2')"/>
                         <br />
                         Task Desciption:
-                        <textarea class="form-control" placeholder="Write task description here here"></textarea>
+                        <textarea id="task" class="form-control" placeholder="Write task description here here"></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success btn-lg">Post</button>
+                        <button type="button" class="btn btn-success btn-lg" onclick=postTask()>Post</button>
                         <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
                     </div>
                 </div>

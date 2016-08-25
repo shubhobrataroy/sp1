@@ -19,7 +19,7 @@
 
 		while($row=mysql_fetch_array($res))
 		{
-			if($row['username'] == 'All' || $row['username'] == 'emp'){
+			if($row['username'] == 'All' | $row['username'] == $_SESSION["username"] ){
 				echo '<tr>';
 				echo '<td>'.$row['username'].'</td>';
 				echo '<td>'.$row['eType'].'</td>';
@@ -32,7 +32,7 @@
 			
     }
 	if($_GET['notice'] == 'pending'){
-		$res= mysql_query("select * from users.notice;") or die("Could not connect to database ");
+		$res= mysql_query("SELECT * FROM `notice` WHERE (username='All' or username='".$_SESSION["username"]."')") or die("Could not connect to database ");
 		echo mysql_num_rows($res);
 	}
 	if($_GET['profile'] == 'show') //profile in loaded here
