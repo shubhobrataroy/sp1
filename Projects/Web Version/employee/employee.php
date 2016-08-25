@@ -89,7 +89,7 @@ function checkTime(i) {
 		</div>
 
 		<div class='tasks col-md-6 col-sm-6 col-xs-6' id='body4'>
-			<h1  style="color:white;text-align:center;"">0</h1>
+			<h1  style="color:white;text-align:center;" id="tasknumber">0</h1>
 			<h4  style="color:white;text-align:center">Assigned Tasks</h4>  
 		</div>
 	</div>		
@@ -110,15 +110,15 @@ function checkTime(i) {
                 </div>
             </div>
      </div>
-	 <div id="viewtask" class="modal fade" role="dialog">
+	 <div id="viewassignedtask" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Modal Header</h4>
                     </div>
-                    <div class="modal-body">
-                        <span></span>
+                    <div class="modal-body" id="assigntask">
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
