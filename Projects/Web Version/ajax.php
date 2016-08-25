@@ -4,9 +4,47 @@ $link = mysql_connect('localhost:3306','root','') or die("Connecton error");
 mysql_select_db("users");
 
 
+function getTaskDetails()
+{
+    $res= mysql_query("select * from users.Task ;") or die("Could not connect to database ");
+    echo '<table class="table-hover table-bordered" style="width: 100%">';
+
+    echo '<tr>';
+    echo '<td>'.'Assigned To'.'</td>';
+    echo '<td>'.'Assigned By'.'</td>';
+    echo '<td>'.'Task Description'.'</td>';
+    echo '<td>'.'Status'.'</td>';
+
+    echo '</tr>';
+
+    while($row=mysql_fetch_array($res))
+    {
+        echo '<tr>';
+        echo '<td>'.$row['assigned_to'].'</td>';
+        echo '<td>'.$row['assigned_from'].'</td>';
+        echo '<td>'.$row['description'].'</td>';
+        echo '<td>'.$row['status'].'</td>';
+
+        echo '</tr>';
+
+    }
+    echo '</table>';
+}
+
 if($_GET['q']!='') //Username Suggestions are retrived from here
 {
-    $res= mysql_query("select username from users.details where username like '".$_GET["q"]."%';") or die("Could not connect to database ");
+    if($_GET['q']=='assignedNumber')
+    {
+        $res= mysql_query("select * from users.Task ;") or die("Could not connect to database ");
+        echo mysql_num_rows($res);
+    }
+
+    else if ($_GET['q']=='assignedTaskDetail')
+    {
+        getTaskDetails();
+    }
+    else{
+    $res = mysql_query("select username from users.details where username like '" . $_GET["q"] . "%';") or die("Could not connect to database ");
     if (sizeof($res) == 0) echo 'No suggestions';
 
     else {
@@ -16,6 +54,7 @@ if($_GET['q']!='') //Username Suggestions are retrived from here
         }
 
     }
+}
 }
 else if($_GET["username"]!='') // Duplicate usernames are checked here
 {

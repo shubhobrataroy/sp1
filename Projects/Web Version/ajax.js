@@ -26,6 +26,21 @@ var refresh=function()
 setInterval(refresh,3000);
 
 
+var refreshTask=function () {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange= function () {
+        if(xhttp.readyState==4)
+        {
+            $('#assignedNumbers').html(xhttp.response);
+        }
+        else document.getElementById('loading2').style.visibility='visible';
+    }
+
+    xhttp.open("GET",'ajax.php?q=assignedNumber&username=&pending=',true);
+    xhttp.send();
+}
+setInterval(refreshTask,3000);
+
 function runAjaxcommand(q,username,pending,accept,reject,password)
 {
     var xhttp = new XMLHttpRequest();
@@ -95,6 +110,26 @@ $(document).ready(function() {
 
     });
 });
+
+
+$(document).ready(function() {
+    $('#body4').click(function () {
+        $('#assignedTask').modal('show');
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange= function () {
+            if(xhttp.readyState==4)
+            {
+                $('#assignedTaskContainer').html(xhttp.response);
+            }
+            else document.getElementById('loading2').style.visibility='visible';
+        }
+
+        xhttp.open("GET",'ajax.php?q=assignedTaskDetail&username=&pending=',true);
+        xhttp.send();
+
+    });
+});
+
 
 
 function accept(username,password)
