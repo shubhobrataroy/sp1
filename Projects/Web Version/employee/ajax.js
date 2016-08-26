@@ -50,22 +50,6 @@ var refresh=function()
 
 }
 
-var refresh_task=function()
-{
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange= function () {
-        if(xhttp.readyState==4)
-        {
-            $('#tasknumber').html(xhttp.response);
-        }
-        
-    }
-
-    xhttp.open("GET",'ajax.php?q=&username=&notice=pending&profile=tasknumber',true);
-    xhttp.send();
-
-}
-
 $(document).ready(function() {
    $('#profilebtn').click(function () {
         $('#viewprofile').modal('toggle');
@@ -83,41 +67,5 @@ $(document).ready(function() {
     });
 });
 
-$(document).ready(function() {
-    $('#body4').click(function () {
-        $('#viewassignedtask').modal('show');
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange= function () {
-            if(xhttp.readyState==4)
-            {
-                $('#assigntask').html(xhttp.response);
-            }
-            
-        }
-	
-        xhttp.open("GET",'ajax.php?q=&username=&notice=&profile=taskwork',true);
-        xhttp.send();
-
-    });
-});
-
-$(document).ready(function() {
-    $('#taskhistorybtn').click(function () {
-        $('#viewassignedtask').modal('show');
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange= function () {
-            if(xhttp.readyState==4)
-            {
-                $('#assigntask').html(xhttp.response);
-            }
-            
-        }
-	
-        xhttp.open("GET",'ajax.php?q=&username=&notice=&profile=taskwork',true);
-        xhttp.send();
-
-    });
-});
-
 setInterval(refresh,3000);
-setInterval(refresh_task,1000);
+
