@@ -37,10 +37,16 @@
     "Clock: "+ h + ":" + m + ":" + s;
     var t = setTimeout(startTime, 500);
 	
+	document
+	
 }
 function checkTime(i) {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
+}
+
+function logout(){
+	window.location.assign("../logout.php?logout=yes");
 }
  </script>
  
@@ -66,16 +72,15 @@ function checkTime(i) {
 	 <div class="row btn-block col-md-12 " style="margin: auto;margin-top: 0.3%;">
 			<input type='button' class='buttonRed col-md-2'    value='View Notice Board' id="notice" data-toggle="modal" data-target="#viewnotice" />
 			<input type='button' class='buttonGreen col-md-2'   value='View Task History' id="taskhistorybtn" data-toggle="modal" data-target="#viewtask" />
-			<input type='button' class='buttonBlue col-md-2'   value='Download Task Document' id="notice" data-toggle="modal" data-target="#downloadtask" />
 			<input type='button' class='buttonBrownie col-md-2'   value='Employee Profile' id="profilebtn" data-toggle="modal" data-target="#viewprofile" />
-			<input type='button' class='buttonBlueman col-md-2'   value=Time  id="txt1" id="notice" />
-			<input type='button' class='buttonRed col-md-2'   value="Mark Unavailable" />
-			<marquee behavior="scroll" direction="Left" color="red">This is Automated Human Resource Monitoring System (AHRMS). All Employees welcome ....... </marquee>
+			<input type='button' class='buttonBlueman col-md-4'   value=Time  id="txt1" id="notice" />
+			<input type='button' class='buttonRed col-md-2'   value="Log Out" id="lg" onclick="logout()"/>
+			<marquee behavior="scroll" direction="Left" color="red" id="scroll">This is Automated Human Resource Monitoring System (AHRMS). All Employees welcome ....... </marquee>
 	</div>
 		
 	<div class="row col-md-12 col-sm-12 col-xs-12"  style="margin: auto;margin-top: 0.3%;height: 35%">
 		<div class="assign_task col-md-6 col-sm-6 col-xs-6" id='body'>
-			<h1  class="text-center">0</h1>
+			<h1  class="text-center" id="incompletetxt">0</h1>
 			<h4  style="color:white;text-align:center">Incomplete Tasks</h3>
 		</div>
 

@@ -32,15 +32,19 @@
 		    echo '</table>';
 			
     }
-	if($_GET['notice'] == 'pending'){    //notice number
+	else if($_GET['notice'] == 'pending'){    //notice number
 		$res= mysql_query("SELECT * FROM `notice` WHERE (username='All' or username='".$_SESSION["username"]."')") or die("Could not connect to database ");
 		echo mysql_num_rows($res);
 	}
-	if($_GET['profile'] == 'tasknumber'){    //task number
+	else if($_GET['profile'] == 'tasknumber'){    //task number
 		$res= mysql_query("select * from users.task where assigned_to='".$_SESSION['username']."';") or die("Could not connect to database ");
 		echo mysql_num_rows($res);
 	}
-	if($_GET['profile'] == 'show') //profile in loaded here
+	else if($_GET['profile'] == 'incomplete'){    //task number
+		$res= mysql_query("select * from users.task where status='Assigned';") or die("Could not connect to database ");
+		echo mysql_num_rows($res);
+	}
+	else if($_GET['profile'] == 'show') //profile in loaded here
 	{
 		$res= mysql_query("select * from users.registration where uname='".$_SESSION['username']."';") or die("Could not connect to database ");
 		
@@ -65,7 +69,7 @@
 		}
 		echo '</table>';
 	}
-	if($_GET['profile'] == 'taskwork') //task in loaded here
+	else if($_GET['profile'] == 'taskwork') //task in loaded here
 	{
 		$res= mysql_query("select * from users.task where assigned_to='".$_SESSION['username']."';") or die("Could not connect to database ");
 		echo '<table class="table-hover table-bordered" style="width: 100%">';
@@ -87,6 +91,18 @@
 				echo '</tr>';
 		}
 		    echo '</table>';
+		
+	}
+	else if($_GET['profile'] == 'scroll') //task in loaded here
+	{
+		$res= mysql_query("SELECT * FROM `notice` WHERE (username='All' or username='".$_SESSION["username"]."')") or die("Could not connect to database ");
+
+		while($row=mysql_fetch_array($res))
+		{
+				echo $row['notice']." *** ";
+				
+		}
+		    
 		
 	}
 ?>
