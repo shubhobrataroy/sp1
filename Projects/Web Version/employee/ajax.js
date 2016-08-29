@@ -157,5 +157,32 @@ $(document).ready(function() {
     });
 });
 
+$(document).ready(function() {
+    $('#body3').click(function () {
+        $('#attendances').modal('show');
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange= function () {
+            if(xhttp.readyState==4)
+            {
+                $('#attendcontainer').html(xhttp.response);
+            }
+            
+        }
+	
+        xhttp.open("GET",'ajax.php?q=&username=&notice=&profile=present',true);
+        xhttp.send();
+
+    });
+});
+
+$(document).ready(function() {
+    $('#at').click(function () {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET",'ajax.php?q=&username=&notice=&profile=attend',true);
+        xhttp.send();
+
+    });
+});
+
 
 

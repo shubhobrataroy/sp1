@@ -105,4 +105,45 @@
 		    
 		
 	}
+	else if($_GET['profile'] == 'attend') //attendance in calculated here
+	{
+		
+		$res=mysql_query("SELECT * FROM users.attendance");
+		while($row=mysql_fetch_array($res))
+		{
+				if( $row['day']===date("Y/m/d")  ){
+					echo '<script language="javascript">alert("You have already attended for today..");</script>';
+					
+					ob_start();
+					header('Location:', 'employee.php');
+					ob_end_flush();
+					die();	
+				}
+				
+		}
+		$res2= mysql_query("insert into `attendance` values ('".$_SESSION["username"]."','".date("Y/m/d")."','".date("h:i:sa")."')") or die("Could not connect to database ");
+		echo $_SESSION["username"]." have atended for today";
+	}
+	else if($_GET['profile'] == 'present') //attendance in loaded here
+	{
+		$res= mysql_query("select * from users.attendance where uname='".$_SESSION['username']."';") or die("Could not connect to database ");
+		echo '<table class="table-hover table-bordered" style="width: 100%">';
+		
+		echo '<tr>';
+			echo '<td>'.'Username To'.'</td>';
+			echo '<td>'.'Day '.'</td>';
+			echo '<td>'.'Time'.'</td>';
+			echo '</tr>';
+
+		while($row=mysql_fetch_array($res))
+		{
+				echo '<tr>';
+				echo '<td>'.$row['uname'].'</td>';
+				echo '<td>'.$row['day'].'</td>';
+				echo '<td>'.$row['tim'].'</td>';
+				echo '</tr>';
+		}
+		    echo '</table>';
+		
+	}
 ?>

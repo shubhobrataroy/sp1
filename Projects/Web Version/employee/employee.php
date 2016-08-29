@@ -48,13 +48,14 @@ function checkTime(i) {
 function logout(){
 	window.location.assign("../logout.php?logout=yes");
 }
+
  </script>
  
 
 <body onload="startTime()">
 	<div class="row">
 	<form name="myForm" action="">
-		<div id='head' class="col-sm-12" style="background-color:#2D2E2F;">
+		<div id='head' class="col-sm-12" style="background-color:#660033">
 			<h1 style='color:white;margin-left:35%'>Employee Panel</h1>
 				<?php 
 					if(sizeof($_SESSION["username"])==0)
@@ -70,11 +71,11 @@ function logout(){
  
 
 	 <div class="row btn-block col-md-12 " style="margin: auto;margin-top: 0.3%;">
-			<input type='button' class='buttonBlue col-md-2'    value='View Notice Board' id="notice" data-toggle="modal" data-target="#viewnotice" />
+			<input type='button' class='buttonRed col-md-2'    value='View Notice Board' id="notice" data-toggle="modal" data-target="#viewnotice" />
 			<input type='button' class='buttonGreen col-md-2'   value='View Task History' id="taskhistorybtn" data-toggle="modal" data-target="#viewtask" />
-			<input type='button' class='buttonViolate col-md-2'   value='Employee Profile' id="profilebtn" data-toggle="modal" data-target="#viewprofile" />
+			<input type='button' class='buttonBrownie col-md-2'   value='Employee Profile' id="profilebtn" data-toggle="modal" data-target="#viewprofile" />
 			<input type='button' class='buttonBlueman col-md-4'   value=Time  id="txt1" id="notice" />
-			<input type='button' class='buttonRed col-md-2'   value="Log Out" id="lg" onclick="logout()"/>
+			<input type='button' class='buttonRed col-md-2'   value="Attended" id="at"/>
 			<marquee behavior="scroll" direction="Left" color="red" id="scroll">This is Automated Human Resource Monitoring System (AHRMS). All Employees welcome ....... </marquee>
 	</div>
 		
@@ -90,11 +91,10 @@ function logout(){
 		</div>
 
 		<div class="reminders col-md-6 col-sm-6 col-xs-6" id='body3' >
-			<h1  style="color:white;text-align:center;">0</h1>
-			<h3  style="color:white;text-align:center">Reminders</h3>
+			<h3  style="color:white;text-align:center">Attendance Log</h3>
 		</div>
 
-		<div class='pending col-md-6 col-sm-6 col-xs-6' id='body4'>
+		<div class='tasks col-md-6 col-sm-6 col-xs-6' id='body4'>
 			<h1  style="color:white;text-align:center;" id="tasknumber">0</h1>
 			<h4  style="color:white;text-align:center">Assigned Tasks</h4>  
 		</div>
@@ -108,6 +108,22 @@ function logout(){
                         <h4 class="modal-title">Notices</h4>
                     </div>
                     <div class="modal-body" id="noticecontainer">
+						
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+     </div>
+	 <div id="attendances" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Attendance</h4>
+                    </div>
+                    <div class="modal-body" id="attendcontainer">
 						
                     </div>
                     <div class="modal-footer">
