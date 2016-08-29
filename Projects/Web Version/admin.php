@@ -50,12 +50,13 @@
 
         <!-- Upper Buttons -->
         <div class="row btn-block col-md-12 " style="margin: auto;margin-top: 0.3%;">
-            <input type='button' class='buttonViolate  col-md-3 '    value='Post a notice'  data-toggle="modal" data-target="#postNotice"/>
+            <input type='button' class='buttonViolate  col-md-2 '    value='Post a notice'  data-toggle="modal" data-target="#postNotice"/>
 
-            <input type='button' class='buttonBlack   col-md-3'   value='Assign A Task'     data-toggle="modal" data-target="#assignTask"/>
+            <input type='button' class='buttonBlack   col-md-2'   value='Assign A Task'     data-toggle="modal" data-target="#assignTask"/>
+            <input type='button' class='buttonRed col-md-3' id="performanceReport" value='Employee Performance Report' />
+            <input type='button' class='buttonGreen col-md-2' id="manageAcc"  value='Manage accounts' />
+            <input type='button' class='buttonBlue col-md-3' id="attendenceReport"  value='Attendence report' />
 
-            <input type='button' class='buttonGreen col-md-3' id="manageAcc"  value='Manage accounts' />
-            <input type='button' class='buttonBlue col-md-3'  value='My Account' />
         </div>
 
         <!-- Metro style tiles -->
@@ -152,7 +153,16 @@
                         <br />
                         Task Desciption:
                         <textarea id="task" class="form-control" placeholder="Write task description here here"></textarea>
+                        <br />
+                        <div>
+                            Start Date:(Optional) <input id="startdate" type="date" class="form-control">
+                            <br />
+                            End Date: <input  id='enddate' type="date" class="form-control">
+
+                        </div>
                     </div>
+
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success btn-lg" onclick=postTask()>Post</button>
                         <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
@@ -185,6 +195,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Modal Header</h4>
                     </div>
+
                     <div class="modal-body" id="assignedTaskContainer">
 
                     </div>
@@ -239,6 +250,42 @@
                 <h4 class="modal-title">Modal Header</h4>
             </div>
             <div class="modal-body" id="manageContainer">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="attendencePopup" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body" id="attendenceContainer">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="performancePopup" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body" id="performanceContainer">
 
             </div>
             <div class="modal-footer">

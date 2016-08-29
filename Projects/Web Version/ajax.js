@@ -108,6 +108,23 @@ function runAjaxcommand(q,username,pending,accept,reject,password,notice,empType
 }
 
 
+function runAjaxcommand(q,username,pending,accept,reject,password,notice,empType,empName,task,startdate,enddate)
+{
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange= function () {
+        if(xhttp.readyState==4)
+        {
+            $('#pendingNumbers').html(xhttp.response);
+        }
+        else document.getElementById('loading2').style.visibility='visible';
+    }
+    var command='ajax.php?q='+q+'&username='+username+'&pending='+pending+'&accept='+accept+'&reject='+reject+'&password='+password+'&notice='+notice+'&empType='+empType+'&empName='+empName+'&task='+task+'&startdate='+startdate+'&enddate='+enddate;
+
+    xhttp.open("GET",command,true);
+    xhttp.send();
+}
+
 
 $(document).ready(function() {
     $('#body').click(function () {
@@ -186,6 +203,43 @@ $(document).ready(function() {
 });
 
 
+$(document).ready(function() {
+    $('#attendenceReport').click(function () {
+        $('#attendencePopup').modal('show');
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange= function () {
+            if(xhttp.readyState==4)
+            {
+                $('#attendenceContainer').html(xhttp.response);
+            }
+
+        }
+
+        xhttp.open("GET",'ajax.php?q=attendenceReport&username=&pending=',true);
+        xhttp.send();
+
+    });
+});
+
+$(document).ready(function() {
+    $('#performanceReport').click(function () {
+        $('#performancePopup').modal('show');
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange= function () {
+            if(xhttp.readyState==4)
+            {
+                $('#performanceContainer').html(xhttp.response);
+            }
+
+        }
+
+        xhttp.open("GET",'ajax.php?q=performanceReport&username=&pending=',true);
+        xhttp.send();
+
+    });
+});
+
+
 function accept(username,password)
     {
         runAjaxcommand('','','',username,'',password);
@@ -207,14 +261,15 @@ function postNotice()
     var empType= document.getElementById('noticeTo').value;
 
 
-
-    if(notice!='') {
+    if(notice!='' ) {
         if(username=='') username='All';
+
         runAjaxcommand('', '', '', '', '', '', notice, empType, username);
     }
 
+
     else
-    alert('Notice field is empty');
+    alert('Fill all fields please');
 }
 
 
@@ -223,18 +278,19 @@ function postTask()
 
     var task = document.getElementById('task').value;
     var username = document.getElementById('username_task').value;
+    var startdate = document.getElementById('startdate').value;
+    var enddate = document.getElementById('enddate').value;
 
 
 
-
-    if(task!='') {
+    if(task!='' && enddate!='') {
         if(username=='') username='All';
-
-        runAjaxcommand('', '', '', '', '', '', '', '', username,task);
+        alert(startdate + enddate);
+        runAjaxcommand('', '', '', '', '', '', '', '', username,task,startdate,enddate);
     }
 
     else
-        alert('Notice field is empty');
+        alert('Fill all fields please');
 }
 
 

@@ -14,7 +14,9 @@ function getTaskDetails()
     echo '<td>'.'Assigned By'.'</td>';
     echo '<td>'.'Task Description'.'</td>';
     echo '<td>'.'Status'.'</td>';
-
+    echo '<td>'.'Start Date'.'</td>';
+    echo '<td>'.'End Date'.'</td>';
+    echo '<td>'.'Completed At'.'</td>';
     echo '</tr>';
 
     while($row=mysql_fetch_array($res))
@@ -24,7 +26,9 @@ function getTaskDetails()
         echo '<td>'.$row['assigned_from'].'</td>';
         echo '<td>'.$row['description'].'</td>';
         echo '<td>'.$row['status'].'</td>';
-
+        echo '<td>'.$row['start_date'].'</td>';
+        echo '<td>'.$row['end_date'].'</td>';
+        echo '<td>'.$row['completed_at'].'</td>';
         echo '</tr>';
 
     }
@@ -83,7 +87,7 @@ function manage()
         echo '<td>'.$row['username'].'</td>';
         echo '<td>'.$row['privilege'].'</td>';
         echo '<td>'.$row['status'].'</td>';
-       
+
 
         echo '<td>'."<button type='button' class='btn btn-danger' onclick=rmv('".$row['username']."')>Delete</button>".'</td>';
         echo '</tr>';
@@ -106,7 +110,82 @@ function delete ()
 
 }
 
+function getAttandenceReport ()
+{
+    $res= mysql_query("select * from users.attendance;") or die("Could not connect to database ");
+    echo '<table class="table-hover table-bordered" style="width: 100%">';
 
+    echo '<tr>';
+    echo '<td>'.'Username To'.'</td>';
+    echo '<td>'.'Day '.'</td>';
+    echo '<td>'.'Time'.'</td>';
+    echo '</tr>';
+
+    while($row=mysql_fetch_array($res))
+    {
+        echo '<tr>';
+        echo '<td>'.$row['uname'].'</td>';
+        echo '<td>'.$row['day'].'</td>';
+        echo '<td>'.$row['tim'].'</td>';
+        echo '</tr>';
+    }
+    echo '</table>';
+}
+
+function getPerformanceReport ()
+{
+    $res= mysql_query("select username from users.details;") or die("Could not connect to database ");
+
+
+
+    echo '<table class="table-hover table-bordered" style="width: 100%">';
+
+    echo '<tr>';
+    echo '<td>'.'Username'.'</td>';
+    echo '<td>'.'Total attendence '.'</td>';
+    echo '<td>'.'Assigned tasks'.'</td>';
+    echo '<td>'.'Completed tasks'.'</td>';
+    echo '<td>'.'Incomplete tasks'.'</td>';
+    echo '<td>'.'Delayed tasks'.'</td>';
+    echo '<td>'.'Efficiency'.'</td>';
+    echo '<td>'.'Modify'.'</td>';
+    echo '</tr>';
+    error_reporting(E_ERROR | E_PARSE);
+    while($row=mysql_fetch_array($res))
+    {
+        $attendence = mysql_query("select uname from users.attendance where uname='".$row['username']."';") or die("Could not connect to database ");
+        $total_attendence=mysql_num_rows($attendence);
+        $assignedtask = mysql_query("select * from users.task where assigned_to='".$row['username']."';") or die("Could not connect to database ");
+        $total_task=mysql_num_rows($assignedtask);
+        $completed_task=0;
+
+        $delayed=0;
+        while($task=mysql_fetch_array($assignedtask))
+        {
+            $task_deadline = strtotime($task['end_date']);
+            $task_completed= strtotime($task['completed_at']);
+
+            if($task_completed>$task_deadline) $delayed++;
+
+            if($task['completed_at']!='') $completed_task++;
+        }
+        $incomplete_task=$total_task-$completed_task;
+
+            $efficiency = ((($total_attendence/30) * 0.5 + ($completed_task / $total_task) * 0.5 - $delayed * 0.20) * 100) | 0;
+
+        echo '<tr>';
+        echo '<td>'.$row['username'].'</td>';
+        echo '<td>'.$total_attendence.'</td>';
+        echo '<td>'.$total_task.'</td>';
+        echo '<td>'.$completed_task.'</td>';
+        echo '<td>'.$incomplete_task.'</td>';
+        echo '<td>'.$delayed.'</td>';
+        echo '<td>'.$efficiency. '%'.'</td>';
+        echo '<td>'."<button type='button' class='btn btn-danger' onclick=modify('".$row['username']."')>Modify</button>".'</td>';
+        echo '</tr>';
+    }
+    echo '</table>';
+}
 
 if($_GET['q']!='') //Username Suggestions are retrived from here
 {
@@ -147,6 +226,18 @@ if($_GET['q']!='') //Username Suggestions are retrived from here
     else if ($_GET['q']=='delete')
     {
         delete ();
+        //alert('hello');
+    }
+
+    else if ($_GET['q']=='attendenceReport')
+    {
+        getAttandenceReport ();
+        //alert('hello');
+    }
+
+    else if ($_GET['q']=='performanceReport')
+    {
+        getPerformanceReport ();
         //alert('hello');
     }
 
@@ -234,8 +325,12 @@ else
 
     else if($_GET['task']!='')
     {
-
-        $query = "INSERT INTO task(assigned_to, assigned_from, description, status) VALUES ('".$_GET['empName']."','admin','".$_GET['task']."','Assigned');";
+        if($_GET['startdate']!='')
+         $startdate=$_GET['startdate'];
+        else
+          $startdate=date("Y-m-d");
+        $query = "INSERT INTO task(assigned_to, assigned_from, description, status,start_date,end_date) VALUES ('".$_GET['empName']."','admin','".$_GET['task']."','Assigned','".$startdate."','".$_GET['enddate']."');";
+        alert($query);
         $res= mysql_query($query,$link) ;
         //or die('<script>alert("Notice posting failed")</script>');
 
