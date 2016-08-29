@@ -41,6 +41,22 @@ var refreshTask=function () {
 }
 setInterval(refreshTask,3000);
 
+
+var refreshNotice=function () {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange= function () {
+        if(xhttp.readyState==4)
+        {
+            $('#noticeNumbers').html(xhttp.response);
+        }
+    }
+
+    xhttp.open("GET",'ajax.php?q=noticeNumbers&username=&pending=',true);
+    xhttp.send();
+}
+setInterval(refreshNotice,3000);
+
+
 function runAjaxcommand(q,username,pending,accept,reject,password)
 {
     var xhttp = new XMLHttpRequest();
@@ -113,6 +129,27 @@ $(document).ready(function() {
 
 
 $(document).ready(function() {
+    $('#manageAcc').click(function () {
+        $('#managePopup').modal('show');
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange= function () {
+            if(xhttp.readyState==4)
+            {
+                $('#manageContainer').html(xhttp.response);
+            }
+            else document.getElementById('loading2').style.visibility='visible';
+        }
+
+        xhttp.open("GET",'ajax.php?q=manage&username=&pending=info',true);
+        xhttp.send();
+
+    });
+});
+
+
+
+
+$(document).ready(function() {
     $('#body4').click(function () {
         $('#assignedTask').modal('show');
         var xhttp = new XMLHttpRequest();
@@ -130,6 +167,23 @@ $(document).ready(function() {
     });
 });
 
+$(document).ready(function() {
+    $('#body3').click(function () {
+        $('#noticeNumbersPopup').modal('show');
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange= function () {
+            if(xhttp.readyState==4)
+            {
+                $('#noticeContainer').html(xhttp.response);
+            }
+
+        }
+
+        xhttp.open("GET",'ajax.php?q=noticeDetails&username=&pending=',true);
+        xhttp.send();
+
+    });
+});
 
 
 function accept(username,password)
@@ -195,4 +249,22 @@ function retrive(str,suggestor,loading) {
     };
     xhttp.open("GET",'ajax.php?q='+str,true);
     xhttp.send();
+}
+
+
+
+
+function rmv (username)
+{
+    var xhttp = new xmlhttprequest();
+    xhttp.onreadystatechange= function () {
+        if(xhttp.readystate==4)
+        {
+           alert(xhttp.response);
+        }
+    }
+
+    xhttp.open("get",'ajax.php?q=delete&username='+username+'&pending=',true);
+    xhttp.send();
+
 }

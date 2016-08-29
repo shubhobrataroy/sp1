@@ -52,10 +52,10 @@
         <div class="row btn-block col-md-12 " style="margin: auto;margin-top: 0.3%;">
             <input type='button' class='buttonViolate  col-md-3 '    value='Post a notice'  data-toggle="modal" data-target="#postNotice"/>
 
-            <input type='button' class='buttonBlack   col-md-2'   value='Assign A Task'     data-toggle="modal" data-target="#assignTask"/>
-            <input type='button' class='buttonRed col-md-3'  value='Employee Performance Report' />
-            <input type='button' class='buttonGreen col-md-2'  value='Manage accounts' />
-            <input type='button' class='buttonBlue col-md-2'  value='My Account' />
+            <input type='button' class='buttonBlack   col-md-3'   value='Assign A Task'     data-toggle="modal" data-target="#assignTask"/>
+
+            <input type='button' class='buttonGreen col-md-3' id="manageAcc"  value='Manage accounts' />
+            <input type='button' class='buttonBlue col-md-3'  value='My Account' />
         </div>
 
         <!-- Metro style tiles -->
@@ -72,8 +72,8 @@
 
 
        <div class="reminders col-md-6 col-sm-6 col-xs-6" id='body3' >
-          <h1  style="color:white;text-align:center;">0</h1>
-          <h4  style="color:white;text-align:center">Reminders</h4>
+          <h1  style="color:white;text-align:center;" id="noticeNumbers">0</h1>
+          <h4  style="color:white;text-align:center">Notices</h4>
        </div>
 
 
@@ -211,6 +211,42 @@
                 </div>
             </div>
         </div>
+
+
+        <div id="noticeNumbersPopup" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body" id="noticeContainer">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+<div id="managePopup" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body" id="manageContainer">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 </div>
 

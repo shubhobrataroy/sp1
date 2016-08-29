@@ -20,6 +20,6 @@
        {
 			echo "<script>window.location='admin.php'</script>";
 	    } else
-          echo "<script>alert('employee');window.location='employee/employee.php'</script>";
+          echo "<script>window.location='employee/employee.php'</script>";
   }
 ?>

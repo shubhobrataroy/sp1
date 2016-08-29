@@ -31,6 +31,74 @@ function getTaskDetails()
     echo '</table>';
 }
 
+function getNoticeDetails()
+{
+    $res= mysql_query("select * from users.notice ;") or die("Could not connect to database ");
+    echo '<table class="table-hover table-bordered" style="width: 100%">';
+
+    echo '<tr>';
+    echo '<td>'.'Notice'.'</td>';
+    echo '<td>'.'Notice For'.'</td>';
+    echo '<td>'.'Employee Type'.'</td>';
+    echo '<td>'.'Posted On'.'</td>';
+
+    echo '</tr>';
+
+    while($row=mysql_fetch_array($res))
+    {
+        echo '<tr>';
+        echo '<td>'.$row['notice'].'</td>';
+        echo '<td>'.$row['username'].'</td>';
+        echo '<td>'.$row['eType'].'</td>';
+        echo '<td>'.$row['date'].'</td>';
+
+        echo '</tr>';
+
+    }
+    echo '</table>';
+}
+
+function getNoticeNumbers()
+{
+    $res= mysql_query("select * from users.notice ;") or die("Could not connect to database ");
+    echo mysql_num_rows($res);
+}
+
+function manage()
+{
+    $res= mysql_query("select * from users.details ;") or die("Could not connect to database ");
+    echo '<table class="table-hover table-bordered" style="width: 100%">';
+
+    echo '<tr>';
+    echo '<td>'.'Username'.'</td>';
+    echo '<td>'.'Priviledge'.'</td>';
+    echo '<td>'.'Status'.'</td>';
+    echo '<td>'.'Password'.'</td>';
+    echo '<td>'.'Delete'.'</td>';
+    echo '</tr>';
+
+    while($row=mysql_fetch_array($res))
+    {
+        echo '<tr>';
+        echo '<td>'.$row['username'].'</td>';
+        echo '<td>'.$row['privilege'].'</td>';
+        echo '<td>'.$row['status'].'</td>';
+        echo '<td>'.$row['password'].'</td>';
+
+        echo '<td>'."<button type='button' class='btn btn-danger' onclick=rmv('".$row['username']."')>Delete</button>".'</td>';
+        echo '</tr>';
+
+    }
+    echo '</table>';
+}
+
+function delete ()
+{
+    $query = "DELETE FROM details WHERE username='".$_GET['username']."'";
+    $res= mysql_query($query) or die('Error 1');
+
+}
+
 if($_GET['q']!='') //Username Suggestions are retrived from here
 {
     if($_GET['q']=='assignedNumber')
@@ -51,6 +119,26 @@ if($_GET['q']!='') //Username Suggestions are retrived from here
 
         if($_GET['status']=='offline') session_destroy();
     }
+    else if($_GET['q']=='noticeDetails'){
+        getNoticeDetails();
+    }
+
+    else if ($_GET['q']=='noticeNumbers')
+    {
+        getNoticeNumbers();
+    }
+
+
+    else if ($_GET['q']=='manage')
+    {
+        manage();
+    }
+
+    else if ($_GET['q']=='delete')
+    {
+        delete ();
+    }
+
     else{
     $res = mysql_query("select username from users.details where username like '" . $_GET["q"] . "%';") or die("Could not connect to database ");
     if (sizeof($res) == 0) echo 'No suggestions';
