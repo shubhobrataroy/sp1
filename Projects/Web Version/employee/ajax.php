@@ -4,6 +4,10 @@
 	
 	session_start();
 	
+	function alert ($message)
+{
+    echo "<script type='text/javascript'>alert('$message');</script>";
+}
 	
 	if($_GET['notice']=='show') //Notice table is retrived here
 	{
@@ -37,11 +41,11 @@
 		echo mysql_num_rows($res);
 	}
 	else if($_GET['profile'] == 'tasknumber'){    //task number
-		$res= mysql_query("select * from users.task where assigned_to='".$_SESSION['username']."';") or die("Could not connect to database ");
+		$res= mysql_query("select * from users.task where assigned_to='".$_SESSION['username']."' and status='Assigned';") or die("Could not connect to database ");
 		echo mysql_num_rows($res);
 	}
 	else if($_GET['profile'] == 'incomplete'){    //task number
-		$res= mysql_query("select * from users.task where status='Assigned';") or die("Could not connect to database ");
+		$res= mysql_query("select * from users.task where assigned_to='".$_SESSION['username']."' and status='Accept';") or die("Could not connect to database ");
 		echo mysql_num_rows($res);
 	}
 	else if($_GET['profile'] == 'show') //profile in loaded here
@@ -71,7 +75,7 @@
 	}
 	else if($_GET['profile'] == 'taskwork') //task in loaded here
 	{
-		$res= mysql_query("select * from users.task where assigned_to='".$_SESSION['username']."';") or die("Could not connect to database ");
+		$res= mysql_query("select * from users.task where assigned_to='".$_SESSION['username']."' and status='Assigned';") or die("Could not connect to database ");
 		echo '<table class="table-hover table-bordered" style="width: 100%">';
 		
 		echo '<tr>';
@@ -87,23 +91,12 @@
 				echo '<td>'.$row['assigned_to'].'</td>';
 				echo '<td>'.$row['assigned_from'].'</td>';
 				echo '<td>'.$row['description'].'</td>';
-				echo '<td>'.$row['status'].'</td>';
+				echo '<td>'.$row['status'].'</td>';		
+				//alert($row['description']);
 				echo '</tr>';
 		}
 		    echo '</table>';
-		
-	}
-	else if($_GET['profile'] == 'scroll') //task in loaded here
-	{
-		$res= mysql_query("SELECT * FROM `notice` WHERE (username='All' or username='".$_SESSION["username"]."')") or die("Could not connect to database ");
-
-		while($row=mysql_fetch_array($res))
-		{
-				echo $row['notice']." *** ";
-				
-		}
-		    
-		
+		echo "<button type='button' class='btn btn-success' onclick=accept('".$_SESSION['username']."')>Accept</button>";
 	}
 	else if($_GET['profile'] == 'attend') //attendance in calculated here
 	{
@@ -145,5 +138,49 @@
 		}
 		    echo '</table>';
 		
+	}
+	
+	else if($_GET['profile'] == 'incom') //attendance in loaded here
+	{
+		$res= mysql_query("select * from users.task where assigned_to='".$_SESSION['username']."' and status='Accept';") or die("Could not connect to database ");
+		echo '<table class="table-hover table-bordered" style="width: 100%">';
+		
+		echo '<tr>';
+			echo '<td>'.'Assigned To'.'</td>';
+			echo '<td>'.'From '.'</td>';
+			echo '<td>'.'Description'.'</td>';
+			echo '<td>'.'Status'.'</td>';
+			echo '<td>'.'Complete'.'</td>';
+			echo '</tr>';
+
+		while($row=mysql_fetch_array($res))
+		{
+				echo '<tr>';
+				echo '<td>'.$row['assigned_to'].'</td>';
+				echo '<td>'.$row['assigned_from'].'</td>';
+				echo '<td>'.$row['description'].'</td>';
+				echo '<td>'.$row['status'].'</td>';
+				echo '<td>'."<button type='button' class='btn btn-success' onclick=complete('".$row['description']."')>Complete</button>".'<td>';
+				echo '</tr>';
+				
+		}
+		    echo '</table>';
+		
+	}
+	
+	else if($_GET['comp'] != '') 
+	{
+		echo '<script>alert("Accepted"); </script>';
+		$query="update users.task set status='Complete' where description ='".$_GET['comp']."' and status='Accepted';";
+		$res= mysql_query($query) or die("Could not connect to database ");
+		
+	}
+	
+	else //attendance in loaded here
+	{
+		//echo $_GET['q'];
+		$query="update users.task set status='Accept' where ASSIGNED_TO	='".$_GET['q']."' and status='Assigned';";
+		echo $query;
+		$res= mysql_query($query) or die("Could not connect to database ");
 	}
 ?>
