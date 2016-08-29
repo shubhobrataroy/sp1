@@ -189,11 +189,13 @@ $(document).ready(function() {
 function accept(username,password)
     {
         runAjaxcommand('','','',username,'',password);
+        alert("User "+username+" has been accepted successfully");
     }
 
 function reject(username)
 {
     runAjaxcommand('','','','',username,'');
+    alert("User "+username+" has been rejected successfully");
 }
 
 
@@ -236,17 +238,38 @@ function postTask()
 }
 
 
+
+function rmv (username)
+{
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange= function () {
+        if(xhttp.readyState==4)
+        {
+            $('#pendingNumbers').html(xhttp.response);
+
+            alert("User "+username+" has been deleted successfully");
+
+        }
+    }
+
+    xhttp.open("get",'ajax.php?q=delete&username='+username+'&pending=',true);
+    xhttp.send();
+    //alert('ajax.php?q=delete&username='+username+'&pending=');
+
+}
+
 function retrive(str,suggestor,loading) {
-    if(str=='') {document.getElementById(suggestor).innerHTML='No Suggestion'; return; }
+    if(str=='') {document.getElementById(suggestor).innerHTML='No Suggestion';document.getElementById(loading).style.visibility='hidden'; return; }
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-        if(xhttp.readyState!=4) document.getElementById(loading).style.visibility='visible';
+        if(xhttp.readyState!=4){ document.getElementById(loading).style.visibility='visible';}
 
         else{
             document.getElementById(loading).style.visibility='hidden';
             document.getElementById(suggestor).innerHTML= xhttp.responseText;
         }
-    };
+    }
     xhttp.open("GET",'ajax.php?q='+str,true);
     xhttp.send();
 }
@@ -254,17 +277,3 @@ function retrive(str,suggestor,loading) {
 
 
 
-function rmv (username)
-{
-    var xhttp = new xmlhttprequest();
-    xhttp.onreadystatechange= function () {
-        if(xhttp.readystate==4)
-        {
-           alert(xhttp.response);
-        }
-    }
-
-    xhttp.open("get",'ajax.php?q=delete&username='+username+'&pending=',true);
-    xhttp.send();
-
-}

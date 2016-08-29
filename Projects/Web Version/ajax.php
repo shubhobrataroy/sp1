@@ -73,7 +73,7 @@ function manage()
     echo '<td>'.'Username'.'</td>';
     echo '<td>'.'Priviledge'.'</td>';
     echo '<td>'.'Status'.'</td>';
-    echo '<td>'.'Password'.'</td>';
+
     echo '<td>'.'Delete'.'</td>';
     echo '</tr>';
 
@@ -83,7 +83,7 @@ function manage()
         echo '<td>'.$row['username'].'</td>';
         echo '<td>'.$row['privilege'].'</td>';
         echo '<td>'.$row['status'].'</td>';
-        echo '<td>'.$row['password'].'</td>';
+       
 
         echo '<td>'."<button type='button' class='btn btn-danger' onclick=rmv('".$row['username']."')>Delete</button>".'</td>';
         echo '</tr>';
@@ -92,12 +92,21 @@ function manage()
     echo '</table>';
 }
 
+function alert ($message)
+{
+    echo "<script type='text/javascript'>alert('$message');</script>";
+}
+
 function delete ()
 {
+
     $query = "DELETE FROM details WHERE username='".$_GET['username']."'";
+
     $res= mysql_query($query) or die('Error 1');
 
 }
+
+
 
 if($_GET['q']!='') //Username Suggestions are retrived from here
 {
@@ -131,12 +140,14 @@ if($_GET['q']!='') //Username Suggestions are retrived from here
 
     else if ($_GET['q']=='manage')
     {
+
         manage();
     }
 
     else if ($_GET['q']=='delete')
     {
         delete ();
+        //alert('hello');
     }
 
     else{
@@ -175,7 +186,6 @@ else if($_GET['pending']=='info') //Pending request table is retrived here
     echo '<tr>';
         echo '<td>'.'Username'.'</td>';
         echo '<td>'.'Email'.'</td>';
-        echo '<td>'.'Password'.'</td>';
         echo '<td>'.'Address'.'</td>';
         echo '<td>'.'Accept'.'</td>';
         echo '<td>'.'Reject'.'</td>';
@@ -186,7 +196,6 @@ else if($_GET['pending']=='info') //Pending request table is retrived here
         echo '<tr>';
           echo '<td>'.$row['uname'].'</td>';
           echo '<td>'.$row['email'].'</td>';
-          echo '<td>'.$row['password'].'</td>';
           echo '<td>'.$row['address'].'</td>';
           echo '<td>'."<button type='button' class='btn btn-success' onclick=accept('".$row['uname']."','".$row['password']."')>Accept</button>".'</td>';
           echo '<td>'."<button type='button' class='btn btn-danger' onclick=reject('".$row['uname']."')>Reject</button>".'</td>';
@@ -199,7 +208,7 @@ else if($_GET['pending']=='info') //Pending request table is retrived here
 else if($_GET['accept']!='')
 {
     $query = "DELETE FROM registration WHERE uname='".$_GET['accept']."'";
-    $query2 = "insert into details values ('".$_GET['accept']."','".$_GET['password']."','employee');";
+    $query2 = "insert into details values ('".$_GET['accept']."','".$_GET['password']."','employee','offline');";
     $res= mysql_query($query2,$link) ;
     $res= mysql_query($query) or die('Error 1');
 }

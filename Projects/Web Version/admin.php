@@ -147,8 +147,8 @@
                             <option>Admin</option>
                         </select>
                         <br />
-                        Username: <img id="loading2" name="loading" src="loading.gif"  height="25" width="25" style="visibility: hidden" /><span id="suggestor2"></span>
-                        <input id="username_task" type="text" class="form-control" placeholder="Post notice for specific employee" onkeyup="retrive(this.value,'suggestor2','loading2')"/>
+                        Username: <img id="loading3" name="loading2" src="loading.gif"  height="25" width="25" style="visibility: hidden" /><span id="suggestor2"></span>
+                        <input id="username_task" type="text" class="form-control" placeholder="Post task for specific employee" onkeyup="retrive(this.value,'suggestor2','loading3')"/>
                         <br />
                         Task Desciption:
                         <textarea id="task" class="form-control" placeholder="Write task description here here"></textarea>
