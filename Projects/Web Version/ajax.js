@@ -126,6 +126,51 @@ function runAjaxcommand(q,username,pending,accept,reject,password,notice,empType
 }
 
 
+function runAjaxcommand2(query,param1,loadResultOn, ResultContainer)
+{
+    if(loadResultOn!='')
+    $(loadResultOn).modal('show');
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange= function () {
+        if(xhttp.readyState==4)
+        {
+            $(ResultContainer).html(xhttp.response);
+        }
+
+    }
+
+
+    var command='ajax.php?q='+query+'&param1='+param1;
+
+    xhttp.open("GET",command,true);
+    xhttp.send();
+}
+
+function runAjaxcommand3(query,param1,param2, ResultContainer)
+{
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange= function () {
+        if(xhttp.readyState==4)
+        {
+            $(ResultContainer).html(xhttp.response);
+            document.getElementById('loading4').style.visibility='hidden';
+        }
+        else
+            document.getElementById('loading4').style.visibility='visible';
+
+    }
+
+
+    var command='ajax.php?q='+query+'&param1='+param1+'&param2='+param2;
+
+    xhttp.open("GET",command,true);
+    xhttp.send();
+}
+
+
+
 $(document).ready(function() {
     $('#body').click(function () {
         $('#pendingReq').modal('show');
@@ -330,6 +375,17 @@ function retrive(str,suggestor,loading) {
     xhttp.send();
 }
 
+function modify (username)
+{
+    //alert('Hello');
+ runAjaxcommand2('modify',username,'#modifyPopup','#modifyContainer');
+
+}
 
 
+function updateComplete(value,id)
+{
+
+    runAjaxcommand3('updateDate',value,id,'#modifyMessage')
+}
 

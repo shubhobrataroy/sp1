@@ -71,9 +71,9 @@ function logout(){
  
 
 	 <div class="row btn-block col-md-12 " style="margin: auto;margin-top: 0.3%;">
-			<input type='button' class='buttonRed col-md-2'    value='View Notice Board' id="notice" data-toggle="modal" data-target="#viewnotice" />
-			<input type='button' class='buttonGreen col-md-2'   value='View Task History' id="taskhistorybtn" data-toggle="modal" data-target="#viewtask" />
-			<input type='button' class='buttonBrownie col-md-2'   value='Employee Profile' id="profilebtn" data-toggle="modal" data-target="#viewprofile" />
+			<input type='button' class='buttonRed col-md-2'    value='View Notice Board' id="notice" />
+			<input type='button' class='buttonGreen col-md-2'   value='View Task History' id="taskhistorybtn"  />
+			<input type='button' class='buttonBrownie col-md-2'   value='Employee Profile' id="profilebtn"  />
 			<input type='button' class='buttonBlueman col-md-4'   value=Time  id="txt1" id="notice" />
 			<input type='button' class='buttonRed col-md-2'   value="Attended" id="at"/>
 			<marquee behavior="scroll" direction="Left" color="red" id="scroll">This is Automated Human Resource Monitoring System (AHRMS). All Employees welcome ....... </marquee>

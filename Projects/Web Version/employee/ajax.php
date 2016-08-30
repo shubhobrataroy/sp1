@@ -3,9 +3,14 @@
 	mysql_select_db("users");
 	
 	session_start();
-	
-	
-	if($_GET['notice']=='show') //Notice table is retrived here
+
+    function alert ($message)
+    {
+        echo "<script type='text/javascript'>alert('$message');</script>";
+    }
+
+
+if($_GET['notice']=='show') //Notice table is retrived here
 	{
 		$res= mysql_query("select * from users.notice;") or die("Could not connect to database ");
 		echo '<table class="table-hover table-bordered" style="width: 100%">';
@@ -32,16 +37,38 @@
 		    echo '</table>';
 			
     }
-	else if($_GET['notice'] == 'pending'){    //notice number
+
+    else if($_GET['q']=='accept')
+    {
+        $query="UPDATE task SET status='accepted' WHERE task_id=".$_GET['accept'];
+        echo $query;
+        $res= mysql_query($query) or die("Could not connect to database ");
+
+    }
+
+    else if($_GET['q']=='complete')
+    {
+        $query="UPDATE task SET status='complete' WHERE task_id=".$_GET['accept'];
+        echo $query;
+        $res= mysql_query($query) or die("Could not connect to database ");
+
+        $query2="UPDATE task SET completed_at='".date("Y-m-d")."' WHERE task_id=".$_GET['accept'];
+        echo $query2;
+        $res= mysql_query($query2) or die("Could not connect to database ");
+
+    }
+
+
+    else if($_GET['notice'] == 'pending'){    //notice number
 		$res= mysql_query("SELECT * FROM `notice` WHERE (username='All' or username='".$_SESSION["username"]."')") or die("Could not connect to database ");
 		echo mysql_num_rows($res);
 	}
 	else if($_GET['profile'] == 'tasknumber'){    //task number
-		$res= mysql_query("select * from users.task where assigned_to='".$_SESSION['username']."';") or die("Could not connect to database ");
+		$res= mysql_query("select * from users.task where assigned_to='".$_SESSION['username']."' and status='Assigned';") or die("Could not connect to database ");
 		echo mysql_num_rows($res);
 	}
 	else if($_GET['profile'] == 'incomplete'){    //task number
-		$res= mysql_query("select * from users.task where status='Assigned';") or die("Could not connect to database ");
+		$res= mysql_query("select * from users.task where status='accepted';") or die("Could not connect to database ");
 		echo mysql_num_rows($res);
 	}
 	else if($_GET['profile'] == 'show') //profile in loaded here
@@ -71,7 +98,7 @@
 	}
 	else if($_GET['profile'] == 'taskwork') //task in loaded here
 	{
-		$res= mysql_query("select * from users.task where assigned_to='".$_SESSION['username']."';") or die("Could not connect to database ");
+		$res= mysql_query("select * from users.task where assigned_to='".$_SESSION['username']."' and status='assigned';") or die("Could not connect to database ");
 		echo '<table class="table-hover table-bordered" style="width: 100%">';
 		
 		echo '<tr>';
@@ -79,6 +106,7 @@
 			echo '<td>'.'From '.'</td>';
 			echo '<td>'.'Description'.'</td>';
 			echo '<td>'.'status'.'</td>';
+            echo '<td>'.'Action'.'</td>';
 			echo '</tr>';
 
 		while($row=mysql_fetch_array($res))
@@ -88,11 +116,40 @@
 				echo '<td>'.$row['assigned_from'].'</td>';
 				echo '<td>'.$row['description'].'</td>';
 				echo '<td>'.$row['status'].'</td>';
+                echo '<td>'."<button type='button' class='btn btn-success' onclick=acceptTask('".$row['task_id']."')>Accept</button>".'<td/>';
 				echo '</tr>';
 		}
 		    echo '</table>';
 		
 	}
+
+    else if($_GET['profile'] == 'taskwork2') //task in loaded here
+    {
+        $res= mysql_query("select * from users.task where assigned_to='".$_SESSION['username']."' and status='accepted';") or die("Could not connect to database ");
+        echo '<table class="table-hover table-bordered" style="width: 100%">';
+
+        echo '<tr>';
+        echo '<td>'.'Asssigned To'.'</td>';
+        echo '<td>'.'From '.'</td>';
+        echo '<td>'.'Description'.'</td>';
+        echo '<td>'.'status'.'</td>';
+        echo '<td>'.'Action'.'</td>';
+        echo '</tr>';
+
+        while($row=mysql_fetch_array($res))
+        {
+            echo '<tr>';
+            echo '<td>'.$row['assigned_to'].'</td>';
+            echo '<td>'.$row['assigned_from'].'</td>';
+            echo '<td>'.$row['description'].'</td>';
+            echo '<td>'.$row['status'].'</td>';
+            echo '<td>'."<button type='button' class='btn btn-success' onclick=completeTask('".$row['task_id']."')>Completed</button>".'<td/>';
+            echo '</tr>';
+        }
+        echo '</table>';
+
+    }
+
 	else if($_GET['profile'] == 'scroll') //task in loaded here
 	{
 		$res= mysql_query("SELECT * FROM `notice` WHERE (username='All' or username='".$_SESSION["username"]."')") or die("Could not connect to database ");

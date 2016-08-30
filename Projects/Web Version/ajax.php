@@ -181,10 +181,57 @@ function getPerformanceReport ()
         echo '<td>'.$incomplete_task.'</td>';
         echo '<td>'.$delayed.'</td>';
         echo '<td>'.$efficiency. '%'.'</td>';
-        echo '<td>'."<button type='button' class='btn btn-danger' onclick=modify('".$row['username']."')>Modify</button>".'</td>';
+        echo '<td>'."<button type='button' class='btn btn-danger' onclick=modify('".$row['username']."') >Modify</button>".'</td>';
         echo '</tr>';
     }
     echo '</table>';
+}
+
+function modify ()
+{
+    $username = $_GET['param1'];
+    $res= mysql_query("select * from users.Task where assigned_to='".$username."';") or die("Could not connect to database ");
+    echo '<table class="table-hover table-bordered" style="width: 100%">';
+
+    echo '<tr>';
+    echo '<td>'.'Assigned To'.'</td>';
+    echo '<td>'.'Assigned By'.'</td>';
+    echo '<td>'.'Task Description'.'</td>';
+    echo '<td>'.'Status'.'</td>';
+    echo '<td>'.'Start Date'.'</td>';
+    echo '<td>'.'End Date'.'</td>';
+    echo '<td>'.'Completed At'.'</td>';
+
+    echo '</tr>';
+
+    while($row=mysql_fetch_array($res))
+    {
+
+        echo '<tr>';
+        echo '<td>'.$row['assigned_to'].'</td>';
+        echo '<td>'.$row['assigned_from'].'</td>';
+        echo '<td>'.$row['description'].'</td>';
+        echo '<td>'.$row['status'].'</td>';
+        echo '<td>'.$row['start_date'].'</td>';
+        echo '<td>'.$row['end_date'].'</td>';
+        echo '<td><input type="text" value="'.$row['completed_at'].'" onkeyup='."'updateComplete".'(this.value,"'.$row['task_id'].'")'."'".'/></td>';
+        echo '</tr>';
+
+    }
+    echo '</table>';
+}
+
+function message ($message)
+{
+    echo $message;
+}
+
+function updateDate ()
+{
+    echo '';
+    $query="UPDATE task SET completed_at="."'".$_GET['param1']."' WHERE task_id='".$_GET['param2']."'";
+    $res= mysql_query($query) or die("Database error") ;
+    echo 'Updated Successfully';
 }
 
 if($_GET['q']!='') //Username Suggestions are retrived from here
@@ -239,6 +286,18 @@ if($_GET['q']!='') //Username Suggestions are retrived from here
     {
         getPerformanceReport ();
         //alert('hello');
+    }
+
+
+    else if ($_GET['q']=='modify')
+    {
+      modify();
+    }
+
+    else if ($_GET['q']=='updateDate')
+    {
+        updateDate();
+
     }
 
     else{
@@ -325,6 +384,7 @@ else
 
     else if($_GET['task']!='')
     {
+
         if($_GET['startdate']!='')
          $startdate=$_GET['startdate'];
         else

@@ -151,7 +151,7 @@ $(document).ready(function() {
             
         }
 	
-        xhttp.open("GET",'ajax.php?q=&username=&notice=&profile=taskwork',true);
+        xhttp.open("GET",'ajax.php?q=&username=&notice=&profile=taskwork2',true);
         xhttp.send();
 
     });
@@ -178,6 +178,10 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('#at').click(function () {
         var xhttp = new XMLHttpRequest();
+        if(xhttp.readyState==4)
+        {
+            $('#attendcontainer').html(xhttp.response);
+        }
         xhttp.open("GET",'ajax.php?q=&username=&notice=&profile=attend',true);
         xhttp.send();
 
@@ -185,4 +189,38 @@ $(document).ready(function() {
 });
 
 
+function acceptTask(id)
+{
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange= function () {
+        if(xhttp.readyState==4)
+        {
+            $('#attendcontainer').html(xhttp.response);
+        }
+    }
 
+
+    var command='ajax.php?q=accept&accept='+id;
+
+    xhttp.open("GET",command,true);
+    xhttp.send();
+}
+
+
+function completeTask(id)
+{
+    alert('Your request will be processed soon');
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange= function () {
+        if(xhttp.readyState==4)
+        {
+            $('#attendcontainer').html(xhttp.response);
+        }
+    }
+
+
+    var command='ajax.php?q=complete&accept='+id;
+
+    xhttp.open("GET",command,true);
+    xhttp.send();
+}
