@@ -150,6 +150,33 @@ if($_GET['notice']=='show') //Notice table is retrived here
 
     }
 
+    else if($_GET['profile'] == 'taskwork3') //task in loaded here
+    {
+        $res= mysql_query("select * from users.task;") or die("Could not connect to database ");
+        echo '<table class="table-hover table-bordered" style="width: 100%">';
+
+        echo '<tr>';
+        echo '<td>'.'Asssigned To'.'</td>';
+        echo '<td>'.'From '.'</td>';
+        echo '<td>'.'Description'.'</td>';
+        echo '<td>'.'status'.'</td>';
+
+        echo '</tr>';
+
+        while($row=mysql_fetch_array($res))
+        {
+            echo '<tr>';
+            echo '<td>'.$row['assigned_to'].'</td>';
+            echo '<td>'.$row['assigned_from'].'</td>';
+            echo '<td>'.$row['description'].'</td>';
+            echo '<td>'.$row['status'].'</td>';
+
+            echo '</tr>';
+        }
+        echo '</table>';
+
+    }
+
 	else if($_GET['profile'] == 'scroll') //task in loaded here
 	{
 		$res= mysql_query("SELECT * FROM `notice` WHERE (username='All' or username='".$_SESSION["username"]."')") or die("Could not connect to database ");

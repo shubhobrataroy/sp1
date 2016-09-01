@@ -214,7 +214,11 @@ function modify ()
         echo '<td>'.$row['status'].'</td>';
         echo '<td>'.$row['start_date'].'</td>';
         echo '<td>'.$row['end_date'].'</td>';
-        echo '<td><input type="text" value="'.$row['completed_at'].'" onkeyup='."'updateComplete".'(this.value,"'.$row['task_id'].'")'."'".'/></td>';
+        if(strtotime($row['end_date'])<strtotime($row['completed_at']))
+          echo '<td><input type="text" value="'.$row['completed_at'].'" onkeyup='."'updateComplete".'(this.value,"'.$row['task_id'].'")'."'".' style="background-color:#F44336"/></td>';
+        else
+                echo '<td><input type="text" value="'.$row['completed_at'].'" onkeyup='."'updateComplete".'(this.value,"'.$row['task_id'].'")'."'".' /></td>';
+
         echo '</tr>';
 
     }

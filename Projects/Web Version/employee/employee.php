@@ -71,16 +71,16 @@ function logout(){
  
 
 	 <div class="row btn-block col-md-12 " style="margin: auto;margin-top: 0.3%;">
-			<input type='button' class='buttonRed col-md-2'    value='View Notice Board' id="notice" />
-			<input type='button' class='buttonGreen col-md-2'   value='View Task History' id="taskhistorybtn"  />
-			<input type='button' class='buttonBrownie col-md-2'   value='Employee Profile' id="profilebtn"  />
-			<input type='button' class='buttonBlueman col-md-4'   value=Time  id="txt1" id="notice" />
-			<input type='button' class='buttonRed col-md-2'   value="Attended" id="at"/>
+			<input type='button' class='buttonRed col-md-3'    value='View Notice Board' id="notice" />
+			<input type='button' class='buttonGreen col-md-3'   value='View Task History' id="taskhistorybtn"  />
+
+			<input type='button' class='buttonBlueman col-md-3'   value=Time  id="txt1" id="notice" />
+			<input type='button' class='buttonRed col-md-3'   value="Attended" id="at"/>
 			<marquee behavior="scroll" direction="Left" color="red" id="scroll">This is Automated Human Resource Monitoring System (AHRMS). All Employees welcome ....... </marquee>
 	</div>
 		
 	<div class="row col-md-12 col-sm-12 col-xs-12"  style="margin: auto;margin-top: 0.3%;height: 35%">
-		<div class="assign_task col-md-6 col-sm-6 col-xs-6" id='body'>
+		<div class="pending col-md-6 col-sm-6 col-xs-6" id='body'>
 			<h1  class="text-center" id="incompletetxt">0</h1>
 			<h4  style="color:white;text-align:center">Incomplete Tasks</h3>
 		</div>

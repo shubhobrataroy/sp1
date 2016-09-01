@@ -133,7 +133,7 @@ $(document).ready(function() {
             
         }
 	
-        xhttp.open("GET",'ajax.php?q=&username=&notice=&profile=taskwork',true);
+        xhttp.open("GET",'ajax.php?q=&username=&notice=&profile=taskwork3',true);
         xhttp.send();
 
     });
@@ -187,6 +187,19 @@ $(document).ready(function() {
 
     });
 });
+
+
+$(document).ready(function() {
+        var xhttp = new XMLHttpRequest();
+        if(xhttp.readyState==4)
+        {
+            $('#attendcontainer').html(xhttp.response);
+        }
+        xhttp.open("GET",'ajax.php?q=&username=&notice=&profile=attend',true);
+        xhttp.send();
+
+});
+
 
 
 function acceptTask(id)

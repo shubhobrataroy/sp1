@@ -330,7 +330,7 @@ function postTask()
 
     if(task!='' && enddate!='') {
         if(username=='') username='All';
-        alert(startdate + enddate);
+        alert('Your request will be processed soon');
         runAjaxcommand('', '', '', '', '', '', '', '', username,task,startdate,enddate);
     }
 
