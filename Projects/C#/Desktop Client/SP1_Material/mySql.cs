@@ -21,7 +21,7 @@ namespace sql
         public dataService(string tableName)
         {
             connectionString = @"server=localhost;userid=root;
-            password=;database=users";
+            password=;database=users;Convert Zero Datetime=True";
             connection = new MySqlConnection(connectionString);
             connection.Open();
             this.tableName = tableName;

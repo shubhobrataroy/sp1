@@ -31,11 +31,13 @@ namespace SP1_Material
         }
         public void updateNotice()
         {
+            
             using (sql.dataService service = new sql.dataService("notice"))
             {
                 NoticeViewer.ItemsSource = null;
                 NoticeViewer.ItemsSource = service.Select("notice", "").AsDataView();
             }
+            
         }
         public void logout()
         {
@@ -49,20 +51,74 @@ namespace SP1_Material
         {
             updateNotice();
         }
+
+        private void refreshPending()
+        {
+            using (sql.dataService service = new sql.dataService("registration"))
+            {
+                Pending.Count=service.Select("*","").Rows.Count.ToString();
+            }
+        }
+
+        private void refreshOnline()
+        {
+            using (sql.dataService service = new sql.dataService("details"))
+            {
+                Online.Count = service.Select("*", "status='online'").Rows.Count.ToString();
+            }
+        }
+
+        private void refreshTask()
+        {
+            using (sql.dataService service = new sql.dataService("task"))
+            {
+                Task.Count = service.Select("*", "").Rows.Count.ToString();
+            }
+        }
+
+        private void refreshNotice()
+        {
+            using (sql.dataService service = new sql.dataService("notice"))
+            {
+                Notice.Count = service.Select("notice", "").Rows.Count.ToString();
+            }
+        }
         private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
             //Refresher
             this.Dispatcher.Invoke(new Action(updateNotice));
+            this.Dispatcher.Invoke(new Action(refreshOnline));
+            this.Dispatcher.Invoke(new Action(refreshPending));
+            this.Dispatcher.Invoke(new Action(refreshTask));
+            this.Dispatcher.Invoke(new Action(refreshNotice));
+
 
         }
 
         private void runTimer ()
         {
-            System.Timers.Timer timer = new System.Timers.Timer(10000.0);
+            System.Timers.Timer timer = new System.Timers.Timer(3000.0);
             timer.Elapsed += OnTimedEvent;
             timer.AutoReset=true;
             timer.Enabled = true;
         }
-        
+
+        private void Online_Click(object sender, RoutedEventArgs e)
+        {
+            Online online = new Online();
+            online.ShowDialog();
+        }
+
+        private void Task_Click(object sender, RoutedEventArgs e)
+        {
+            Task task = new Task();
+            task.ShowDialog();
+        }
+
+        private void Notice_Click(object sender, RoutedEventArgs e)
+        {
+            Notice notice1 = new Notice();
+            notice1.ShowDialog();
+        }
     }
 }

@@ -35,27 +35,54 @@
                 </TextBlock>
                 <TextBlock TextAlignment="Center" Foreground="White" x:Name="textBlock" HorizontalAlignment="Right" Margin="972,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="224" FontSize="16" FontFamily="Arial Black" Height="34"><Run Text="Logged in as :"/><LineBreak/><Run/></TextBlock>
                 <TextBlock TextAlignment="Center" Foreground="White" x:Name="username" HorizontalAlignment="Right" Margin="972,100,0,0" TextWrapping="Wrap" Text="admin" VerticalAlignment="Top" Width="224" FontSize="16" FontFamily="Arial Black" Height="26"/>
-                <Button Foreground="White" x:Name="button" Content="Logout" HorizontalAlignment="Right" Margin="0,126,47,0" VerticalAlignment="Top" Width="123" Height="29" Click="button_Click" ToolTip="Click it to logout" Background="Red"/>
+                <Button Foreground="White" x:Name="button" Content="Logout" HorizontalAlignment="Right" Margin="0,126,47,0" VerticalAlignment="Top" Width="123" Height="29" Click="button_Click" ToolTip="Click it to logout" Background="#EE1111"/>
 
             </Grid>
         </materialDesign:Card>
 
-
-        <Controls:Tile Title="Hello!" 
-                    TiltFactor="4"
-                    Width="Auto" Height="Auto" 
-                    Count="2" Margin="311,527,670,23" Click="Tile_Click">
-
-        </Controls:Tile>
         <materialDesign:Card Height="600" Margin="10,90,543,0">
             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,11,18">
-                <TextBlock FontSize="25" TextAlignment="Center">Notice</TextBlock>
-                <DataGrid Height="453" Name="NoticeViewer">
+                <TextBlock FontSize="25" TextAlignment="Center">Notice Board</TextBlock>
+                <DataGrid Height="453" Name="NoticeViewer" ColumnWidth="*">
 
                 </DataGrid>
 
             </StackPanel>
 
         </materialDesign:Card>
+
+        <Grid Margin="301,170,10,23">
+            <Controls:Tile Title="Assigned Task"
+                    Name="Task"       
+                    TitleFontSize="20"
+                    CountFontSize="65"        
+                    TiltFactor="4"
+                    Width="Auto" Height="Auto" 
+                    Count="0" Margin="530,306,10,10" Click="Task_Click" >
+
+            </Controls:Tile>
+            <Controls:Tile Title="Notices"
+                Name="Notice"           
+                TitleFontSize="20"
+                CountFontSize="65"            
+            	TiltFactor="4"
+            	Width="Auto" Height="Auto" 
+            	Count="0" Margin="10,306,530,10" Click="Notice_Click" />
+            <Controls:Tile Title="Online Users"
+                Name="Online"           
+                TitleFontSize="20"
+                CountFontSize="65"            
+            	TiltFactor="4"
+            	Width="Auto" Height="Auto" 
+            	Count="0" Margin="530,90,10,226" Click="Online_Click" />
+            <Controls:Tile Title="Pending Requests"
+                Name="Pending"           
+                TitleFontSize="20"
+                CountFontSize="65"           
+            	TiltFactor="4"
+            	Width="Auto" Height="Auto" 
+            	Count="0" Margin="10,90,530,226" Click="Tile_Click" FontSize="29"/>
+        </Grid>
+
     </Grid>
 </Page>
