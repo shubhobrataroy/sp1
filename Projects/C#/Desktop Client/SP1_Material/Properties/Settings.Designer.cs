@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Client_Application.Properties
+namespace SP1_Material.Properties
 {
 
 
