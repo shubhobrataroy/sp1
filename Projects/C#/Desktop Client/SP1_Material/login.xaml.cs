@@ -25,12 +25,13 @@ namespace SP1_Material
             InitializeComponent();
         }
 
-        private void Login_Click(object sender, RoutedEventArgs e)
+
+        private void initiateLogin()
         {
             MessageBox.Show(username.Text);
             bool resultFound;
             using (sql.dataService service = new sql.dataService("details"))
-                 resultFound = service.ExecuteQuery("select * from details where username='"+username.Text+"' and password='"+password.Password+"'");
+                resultFound = service.ExecuteQuery("select * from details where username='" + username.Text + "' and password='" + password.Password + "'");
 
             MessageBox.Show(Test.Logger.GetExceptionList());
             if (resultFound)
@@ -44,6 +45,11 @@ namespace SP1_Material
                     MessageBox.Show(username.Text);
             }
             else MessageBox.Show("Wrong Username or password");
+        }
+
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            initiateLogin();
         }
 
         private void username_focus_lost(object sender, EventArgs e)
@@ -70,9 +76,24 @@ namespace SP1_Material
         {
             if (passwordBlock.Text == "Password")
                 passwordBlock.Text = "";
-            
         }
-
+        private void textBox1_KeyPress(object sender, KeyEventArgs e)
+        {
+            TextBox sentby;
+            if (e.Key == Key.Enter && (sentby=(TextBox)sender).Text !="")
+            {
+                e.Handled = true;
+                    password.Focus();    
+            }
+        }
+        private void textBox2_KeyPress(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                e.Handled = true;
+                initiateLogin();
+            }
+        }
 
         private void username_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -82,6 +103,11 @@ namespace SP1_Material
         private void Login_Click_1(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            username.Focus();
         }
     }
 }

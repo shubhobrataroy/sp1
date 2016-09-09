@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Data;
 
 namespace SP1_Material
 {
@@ -25,7 +12,7 @@ namespace SP1_Material
             InitializeComponent();
             using (sql.dataService service = new sql.dataService("notice"))
             {
-                TaskTable.ItemsSource = service.Select("*", "").AsDataView();
+                TaskTable.ItemsSource = service.Select("*", "Date",false).AsDataView();
             }
         }
     }

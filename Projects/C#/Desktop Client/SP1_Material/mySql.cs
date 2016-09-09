@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Data;
 
@@ -75,6 +71,25 @@ namespace sql
             catch (MySqlException e) { Test.Logger.AppendException(e.ToString()); return null; }
         }
 
+
+        public String SelectOnlyOneValue(string column_name,string where)
+        {
+            string query = "Select " + column_name + " from " + tableName + " where " + where;
+            command = new MySqlCommand(query, connection);
+            command.ExecuteNonQuery();
+            try
+            {
+                command.ExecuteNonQuery();
+
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    reader.Read();
+                    return reader[column_name].ToString();
+                }
+            }
+            catch (MySqlException e) { Test.Logger.AppendException(e.ToString()); return null; }
+        } 
+
         public DataTable Select(string collumn_name, string where)
         {
             if (collumn_name == "") collumn_name = "*";
@@ -88,6 +103,14 @@ namespace sql
             else return ExecuteQueryForResults(query2);
         }
 
+        public DataTable Select(string collumn_name, string order_by_column_name, bool ACENDING = true)
+        {
+            if (ACENDING)
+                return ExecuteQueryForResults("Select " + collumn_name + " from " + tableName + " ORDER BY " + order_by_column_name + " ASC");
+
+            else
+                return ExecuteQueryForResults("Select " + collumn_name + " from " + tableName + " ORDER BY " + order_by_column_name + " DESC");
+        }
         public bool Insert(string value_string)
         {
             return ExecuteQuery("Insert into " + tableName + " values (" + value_string + ")");
@@ -96,6 +119,11 @@ namespace sql
         public bool Update(string collumn_name, string value, string where)
         {
             return ExecuteQuery("Update " + tableName + " set " + collumn_name + "=" + value + " where " + where);
+        }
+
+        public bool Delete(string where)
+        {
+            return ExecuteQuery("DELETE FROM " + tableName + " WHERE " + where);
         }
     }
 }

@@ -75,9 +75,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="admin.xaml.cs">
-      <DependentUpon>admin.xaml</DependentUpon>
-    </Compile>
     <Compile Include="admin_page.xaml.cs">
       <DependentUpon>admin_page.xaml</DependentUpon>
     </Compile>
@@ -92,14 +89,14 @@
     <Compile Include="Online.xaml.cs">
       <DependentUpon>Online.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pending.xaml.cs">
+      <DependentUpon>Pending.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Task.xaml.cs">
       <DependentUpon>Task.xaml</DependentUpon>
     </Compile>
     <Compile Include="WebService.cs" />
-    <Page Include="admin.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="Worker.cs" />
     <Page Include="admin_page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -125,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Online.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pending.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

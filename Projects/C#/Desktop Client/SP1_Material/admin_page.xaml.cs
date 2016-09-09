@@ -27,6 +27,15 @@ namespace SP1_Material
         public admin_page()
         {
             InitializeComponent();
+            
+            //Loading data to all components for the 1st time
+            this.Dispatcher.Invoke(new Action(updateNotice));
+            this.Dispatcher.Invoke(new Action(refreshOnline));
+            this.Dispatcher.Invoke(new Action(refreshPending));
+            this.Dispatcher.Invoke(new Action(refreshTask));
+            this.Dispatcher.Invoke(new Action(refreshNotice));
+
+
             runTimer();   
         }
         public void updateNotice()
@@ -35,7 +44,8 @@ namespace SP1_Material
             using (sql.dataService service = new sql.dataService("notice"))
             {
                 NoticeViewer.ItemsSource = null;
-                NoticeViewer.ItemsSource = service.Select("notice", "").AsDataView();
+                NoticeViewer.ItemsSource = service.Select("notice","date",false).AsDataView();
+
             }
             
         }
@@ -119,6 +129,12 @@ namespace SP1_Material
         {
             Notice notice1 = new Notice();
             notice1.ShowDialog();
+        }
+
+        private void Pending_Click(object sender, RoutedEventArgs e)
+        {
+            Pending pending = new Pending();
+            pending.ShowDialog();
         }
     }
 }

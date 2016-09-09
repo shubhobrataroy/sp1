@@ -16,7 +16,8 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         
       Height="700.211" Width="1360"
-      Title="login">
+      Title="login"
+      Loaded="Page_Loaded">
 
     <Grid Background="#E8EAF6" Margin="0,0,0,-78" >
 
@@ -35,9 +36,9 @@
         <materialDesign:Card Margin="76,110,76,0" Height="538" >
             <Grid Margin="0,10,0,17">
                 <Button x:Name="Login" Content="Login" Margin="376,328,376,19" Height="Auto" FontFamily="Arial Black" FontSize="14" Click="Login_Click" />
-                <TextBox      TextAlignment="Center" Foreground="Gray" FocusManager.LostFocus="username_focus_lost" FocusManager.GotFocus="username_focus_gained" x:Name="username" HorizontalAlignment="Center" Height="49" Margin="0,177,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="470" TextChanged="username_TextChanged" FontSize="28" />
+                <TextBox      TextAlignment="Center" Foreground="Gray" FocusManager.LostFocus="username_focus_lost" FocusManager.GotFocus="username_focus_gained" x:Name="username" HorizontalAlignment="Center" Height="49" Margin="0,177,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="470" TextChanged="username_TextChanged" FontSize="28" KeyUp="textBox1_KeyPress"/>
                 <TextBlock    TextAlignment="Center" x:Name="passwordBlock" HorizontalAlignment="Center" Height="49" Margin="0,261,0,0" VerticalAlignment="Top"  Width="470" Text="Password" FontSize="28"/>
-                <PasswordBox  FocusManager.LostFocus="password_focus_lost" FocusManager.GotFocus="password_focus_gained" x:Name="password" Opacity="0.4" HorizontalAlignment="Center" Height="49" Margin="0,261,0,0" VerticalAlignment="Top" Width="470" FontSize="28"/>
+                <PasswordBox  FocusManager.LostFocus="password_focus_lost" FocusManager.GotFocus="password_focus_gained" x:Name="password" Opacity="0.4" HorizontalAlignment="Center" Height="49" Margin="0,261,0,0" VerticalAlignment="Top" Width="470" FontSize="28" KeyUp="textBox2_KeyPress"/>
 
             </Grid>
         </materialDesign:Card>

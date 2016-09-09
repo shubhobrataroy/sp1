@@ -81,7 +81,7 @@
                 CountFontSize="65"           
             	TiltFactor="4"
             	Width="Auto" Height="Auto" 
-            	Count="0" Margin="10,90,530,226" Click="Tile_Click" FontSize="29"/>
+            	Count="0" Margin="10,90,530,226" Click="Pending_Click"  />
         </Grid>
 
     </Grid>
