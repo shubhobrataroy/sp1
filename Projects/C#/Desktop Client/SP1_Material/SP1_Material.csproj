@@ -77,36 +77,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="admin_page.xaml.cs">
+    <Compile Include="Admin\admin_page.xaml.cs">
       <DependentUpon>admin_page.xaml</DependentUpon>
     </Compile>
     <Compile Include="Logger.cs" />
-    <Compile Include="login.xaml.cs">
+    <Compile Include="Admin\login.xaml.cs">
       <DependentUpon>login.xaml</DependentUpon>
     </Compile>
     <Compile Include="mySql.cs" />
-    <Compile Include="Notice.xaml.cs">
+    <Compile Include="Admin\Notice.xaml.cs">
       <DependentUpon>Notice.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Online.xaml.cs">
+    <Compile Include="Admin\Online.xaml.cs">
       <DependentUpon>Online.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pending.xaml.cs">
+    <Compile Include="Admin\Pending.xaml.cs">
       <DependentUpon>Pending.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Task Assigner.xaml.cs">
+    <Compile Include="Admin\Task Assigner.xaml.cs">
       <DependentUpon>Task Assigner.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Task.xaml.cs">
+    <Compile Include="Admin\Task.xaml.cs">
       <DependentUpon>Task.xaml</DependentUpon>
     </Compile>
     <Compile Include="WebService.cs" />
-    <Compile Include="Worker.cs" />
-    <Page Include="admin_page.xaml">
+    <Page Include="Admin\admin_page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="login.xaml">
+    <Page Include="Admin\login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -122,23 +121,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Notice.xaml">
+    <Page Include="Admin\Notice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Online.xaml">
+    <Page Include="Admin\Online.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pending.xaml">
+    <Page Include="Admin\Pending.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Task Assigner.xaml">
+    <Page Include="Admin\Task Assigner.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Task.xaml">
+    <Page Include="Admin\Task.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
