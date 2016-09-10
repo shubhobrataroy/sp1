@@ -52,6 +52,8 @@
         </materialDesign:Card>
 
         <Grid Margin="301,170,10,23">
+
+            <Button Background="#3278BC" Content="Assign Task" Foreground="White" Margin="10,35,843,440" FontSize="16" Click="Button_Click_1"></Button>
             <Controls:Tile Title="Assigned Task"
                     Name="Task"       
                     TitleFontSize="20"
@@ -82,6 +84,10 @@
             	TiltFactor="4"
             	Width="Auto" Height="Auto" 
             	Count="0" Margin="10,90,530,226" Click="Pending_Click"  />
+            <Button Background="#3278BC" Content="Post Notice" Foreground="White" Margin="206,35,642,440" FontSize="16"/>
+            <Button Background="#3278BC" Content="Performance report" Foreground="White" Margin="407,35,424,440" FontSize="16"/>
+            <Button Background="#3278BC" Content="Manage Accounts" Foreground="White" Margin="625,35,220,440" FontSize="16"/>
+            <Button Background="#3278BC" Content="Attendence Report" Foreground="White" Margin="829,35,10,440" FontSize="16"/>
         </Grid>
 
     </Grid>

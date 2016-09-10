@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SP1_Material"
         mc:Ignorable="d"
-        Title="Online" Height="338.346" Width="619.173"
+        Title="Online" Height="371.418" Width="619.173"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -20,20 +20,21 @@
         >
     <Grid>
         <materialDesign:Card Height="270" Margin="10,10,10,0">
-            <Grid Margin="-76,0,76,0">
-                <TextBox x:Name="textBox" HorizontalAlignment="Center" Height="23" Margin="172,22,171,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="228" TextChanged="textBox_TextChanged"/>
-                <DatePicker HorizontalAlignment="Left" Margin="172,70,0,0" VerticalAlignment="Top" Width="228"/>
-                <DatePicker HorizontalAlignment="Center" Margin="0,120,0,0" VerticalAlignment="Top" Width="228"/>
+            <Grid Margin="10,0,-10,0">
+                <TextBox x:Name="textBox" HorizontalAlignment="Center" Height="23" Margin="172,22,62,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="337" TextChanged="textBox_TextChanged"/>
+                <DatePicker HorizontalAlignment="Left" Margin="172,70,0,0" VerticalAlignment="Top" Width="337"/>
+                <DatePicker HorizontalAlignment="Center" Margin="172,120,62,0" VerticalAlignment="Top" Width="337"/>
                 <Label x:Name="label" Content="Assign To:" HorizontalAlignment="Left" Margin="84,22,0,0" VerticalAlignment="Top" Width="83"/>
                 <Label x:Name="label1" Content="Start Date" HorizontalAlignment="Left" Margin="84,70,0,0" VerticalAlignment="Top" Width="83"/>
                 <Label x:Name="label1_Copy" Content="End Date" HorizontalAlignment="Left" Margin="84,120,0,0" VerticalAlignment="Top" Width="83"/>
 
-                <RichTextBox Opacity="0.8" x:Name="richTextBox" HorizontalAlignment="Left" Height="94" Margin="172,156,0,0" VerticalAlignment="Top" Width="228">
+                <RichTextBox Opacity="0.8" x:Name="richTextBox" HorizontalAlignment="Left" Height="94" Margin="172,156,0,0" VerticalAlignment="Top" Width="337">
 
                 </RichTextBox>
                 <Label x:Name="label1_Copy1" Content="Description:" HorizontalAlignment="Left" Margin="84,156,0,0" VerticalAlignment="Top" Width="83"/>
 
             </Grid>
         </materialDesign:Card>
+        <Button x:Name="button" Content="Assign Task" HorizontalAlignment="Left" Margin="249,294,0,0" VerticalAlignment="Top" Width="130" Height="35"/>
     </Grid>
 </Controls:MetroWindow>

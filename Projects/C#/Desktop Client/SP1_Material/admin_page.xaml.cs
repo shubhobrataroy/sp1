@@ -19,9 +19,9 @@ namespace SP1_Material
         public admin_page()
         {
             InitializeComponent();
-            
+
             //Loading data to all components for the 1st time
-            updateNotice();
+            this.Dispatcher.Invoke(new Action(updateNotice));
             this.Dispatcher.Invoke(new Action(refreshOnline));
             this.Dispatcher.Invoke(new Action(refreshPending));
             this.Dispatcher.Invoke(new Action(refreshTask));
@@ -48,21 +48,17 @@ namespace SP1_Material
             });
             worker.RunWorkerAsync();         
        }
-            
-        
+ 
         public void logout()
         {
             MainWindow.pageContainer.Navigate(new login());
         }
+
         private void button_Click(object sender, RoutedEventArgs e)
         {
             logout();
         }
-        private void Tile_Click(object sender, RoutedEventArgs e)
-        {
-            updateNotice();
-        }
-
+       
         private void refreshPending()
         {
             BackgroundWorker worker = new BackgroundWorker();
@@ -131,7 +127,6 @@ namespace SP1_Material
             this.Dispatcher.Invoke(new Action(refreshTask));
             this.Dispatcher.Invoke(new Action(refreshNotice));
 
-
         }
 
         private void runTimer ()
@@ -166,6 +161,11 @@ namespace SP1_Material
             pending.ShowDialog();
         }
 
-         
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Task_Assigner taskAssigner = new Task_Assigner();
+            taskAssigner.ShowDialog();
+            
+        }
     }
 }
