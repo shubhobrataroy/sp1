@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Test
 {
@@ -15,6 +12,7 @@ namespace Test
         {
             exceptions.Append(exception_details);
             exceptions.Append("\n\n\n");
+            WriteExceptionsToLog();
         }
 
         public static void PrintExceptions()
@@ -29,7 +27,7 @@ namespace Test
 
         public static void WriteExceptionsToLog()
         {
-            using (StreamWriter writer = new StreamWriter("log.txt"))
+            using (StreamWriter writer = new StreamWriter("log.txt",true))
                 writer.WriteLine(exceptions.ToString());
 
         }

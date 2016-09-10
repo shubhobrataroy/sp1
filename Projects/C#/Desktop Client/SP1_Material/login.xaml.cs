@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using MahApps.Metro.Controls.Dialogs;
+using MahApps.Metro.Controls;
+using System.ComponentModel;
 
 namespace SP1_Material
 {
@@ -23,17 +17,19 @@ namespace SP1_Material
         public login()
         {
             InitializeComponent();
+            
         }
 
 
         private void initiateLogin()
         {
-            MessageBox.Show(username.Text);
+            
             bool resultFound;
-            using (sql.dataService service = new sql.dataService("details"))
+            try
+            {
+                using (sql.dataService service = new sql.dataService("details"))
                 resultFound = service.ExecuteQuery("select * from details where username='" + username.Text + "' and password='" + password.Password + "'");
 
-            MessageBox.Show(Test.Logger.GetExceptionList());
             if (resultFound)
             {
                 if (username.Text.ToLower() == "admin")
@@ -45,15 +41,27 @@ namespace SP1_Material
                     MessageBox.Show(username.Text);
             }
             else MessageBox.Show("Wrong Username or password");
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Test.Logger.AppendException(ex.ToString());
+                showMessage("ERROR", "Could not connect to server");
+            }
+        }
+
+        public void showMessage (string title , string message)
+        {
+            this.TryFindParent<MainWindow>().ShowMessageAsync(title, message);
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            initiateLogin();
+                initiateLogin();
         }
 
         private void username_focus_lost(object sender, EventArgs e)
         {
+            Suggestor.Text = "";
             if (username.Text == "")
             { username.Text = "Username"; username.Foreground = Brushes.Gray; }
             }
@@ -88,16 +96,30 @@ namespace SP1_Material
         }
         private void textBox2_KeyPress(object sender, KeyEventArgs e)
         {
+            
             if (e.Key == Key.Enter)
             {
                 e.Handled = true;
                 initiateLogin();
             }
+            
         }
 
+        private string currentText;
+        
         private void username_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (((TextBox)sender).Text != "")
+            {
+                currentText = ((TextBox)sender).Text;
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(workDone);
+                worker.DoWork += new DoWorkEventHandler(doWork);
+                worker.RunWorkerAsync();
+            }
+            else
+                Suggestor.Text = "";
+            
         }
 
         private void Login_Click_1(object sender, RoutedEventArgs e)
@@ -108,6 +130,31 @@ namespace SP1_Material
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             username.Focus();
+        }
+
+        private void username_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private string suggestion;
+        private void doWork(object sender, DoWorkEventArgs args)
+        {
+            try
+            {
+                using (sql.dataService service = new sql.dataService("details"))
+                    suggestion = "Suggestion :\n" + service.SelectOnlyOneValue("username", "username like '" + currentText + "%'");
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Test.Logger.AppendException(ex.ToString());
+                suggestion = "Server Error";
+            }
+
+        }
+        private void workDone(object sender, RunWorkerCompletedEventArgs args)
+        {
+            Suggestor.Text = suggestion;
         }
     }
 }

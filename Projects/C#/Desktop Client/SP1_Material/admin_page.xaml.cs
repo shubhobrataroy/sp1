@@ -1,20 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace SP1_Material
 {
@@ -23,13 +11,17 @@ namespace SP1_Material
     /// </summary>
     public partial class admin_page : Page
     {
-        
+        private DataView noticeData;
+        private string pendingNumbers;
+        private string noticeNumbers;
+        private string taskNumbers;
+        private string onlineNumbers;
         public admin_page()
         {
             InitializeComponent();
             
             //Loading data to all components for the 1st time
-            this.Dispatcher.Invoke(new Action(updateNotice));
+            updateNotice();
             this.Dispatcher.Invoke(new Action(refreshOnline));
             this.Dispatcher.Invoke(new Action(refreshPending));
             this.Dispatcher.Invoke(new Action(refreshTask));
@@ -38,17 +30,26 @@ namespace SP1_Material
 
             runTimer();   
         }
+
         public void updateNotice()
         {
-            
-            using (sql.dataService service = new sql.dataService("notice"))
-            {
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += new DoWorkEventHandler(delegate (object sender, DoWorkEventArgs args) {
+                using (sql.dataService service = new sql.dataService("notice"))
+                {
+                    noticeData = service.Select("notice", "date", false).AsDataView();
+                    return;
+                }
+            });
+            worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate (object sender, RunWorkerCompletedEventArgs args) {
                 NoticeViewer.ItemsSource = null;
-                NoticeViewer.ItemsSource = service.Select("notice","date",false).AsDataView();
-
-            }
+                NoticeViewer.ItemsSource = noticeData;
+                return;
+            });
+            worker.RunWorkerAsync();         
+       }
             
-        }
+        
         public void logout()
         {
             MainWindow.pageContainer.Navigate(new login());
@@ -64,34 +65,62 @@ namespace SP1_Material
 
         private void refreshPending()
         {
-            using (sql.dataService service = new sql.dataService("registration"))
-            {
-                Pending.Count=service.Select("*","").Rows.Count.ToString();
-            }
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += new DoWorkEventHandler(delegate (object sender, DoWorkEventArgs args) {
+                using (sql.dataService service = new sql.dataService("registration"))
+                {
+                    pendingNumbers = service.Select("*", "").Rows.Count.ToString();
+                }
+            });
+            worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate (object sender, RunWorkerCompletedEventArgs args) {
+                Pending.Count = pendingNumbers;
+            });
+            worker.RunWorkerAsync();
         }
 
         private void refreshOnline()
         {
-            using (sql.dataService service = new sql.dataService("details"))
-            {
-                Online.Count = service.Select("*", "status='online'").Rows.Count.ToString();
-            }
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += new DoWorkEventHandler(delegate (object sender, DoWorkEventArgs args) {
+                using (sql.dataService service = new sql.dataService("details"))
+                {
+                    onlineNumbers = service.Select("*", "status='online'").Rows.Count.ToString();
+                }
+            });
+            worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate (object sender, RunWorkerCompletedEventArgs args) {
+                Online.Count = onlineNumbers;
+            });
+            worker.RunWorkerAsync(); 
         }
 
         private void refreshTask()
         {
-            using (sql.dataService service = new sql.dataService("task"))
-            {
-                Task.Count = service.Select("*", "").Rows.Count.ToString();
-            }
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += new DoWorkEventHandler(delegate (object sender, DoWorkEventArgs args) {
+                using (sql.dataService service = new sql.dataService("task"))
+                {
+                    taskNumbers = service.Select("*", "").Rows.Count.ToString();
+                }
+            });
+            worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate (object sender, RunWorkerCompletedEventArgs args) {
+                Task.Count = taskNumbers;
+            });
+            worker.RunWorkerAsync();
         }
 
         private void refreshNotice()
         {
-            using (sql.dataService service = new sql.dataService("notice"))
-            {
-                Notice.Count = service.Select("notice", "").Rows.Count.ToString();
-            }
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += new DoWorkEventHandler(delegate (object sender, DoWorkEventArgs args) {
+                using (sql.dataService service = new sql.dataService("notice"))
+                {
+                    noticeNumbers = service.Select("notice", "").Rows.Count.ToString();
+                }
+            });
+            worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate (object sender, RunWorkerCompletedEventArgs args) {
+                Notice.Count = noticeNumbers;
+            });
+            worker.RunWorkerAsync();
         }
         private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
@@ -136,5 +165,7 @@ namespace SP1_Material
             Pending pending = new Pending();
             pending.ShowDialog();
         }
+
+         
     }
 }

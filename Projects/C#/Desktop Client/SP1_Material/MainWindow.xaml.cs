@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace SP1_Material
 {
@@ -10,18 +11,21 @@ namespace SP1_Material
 
     {
         public static Frame pageContainer;
+        
         public MainWindow()
         {
             InitializeComponent();
             this.WindowState = WindowState.Maximized;
             pageContainer = container;
-            container.Navigate(new login());
+            container.Navigate(new login());            
         }
 
+
         
+                
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
