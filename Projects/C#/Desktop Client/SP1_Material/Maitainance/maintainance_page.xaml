@@ -1,0 +1,59 @@
+﻿<Page x:Class="SP1_Material.Maitainance.maintainance_page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SP1_Material.Maitainance"
+      mc:Ignorable="d" 
+      Height="713.373" Width="1360"
+      Title="maintainance_page"
+      
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+      
+      >
+
+
+    <Grid Background="#E8EAF6">
+        <materialDesign:Card Height="165">
+            <materialDesign:Card.Background>
+                <LinearGradientBrush EndPoint="0.553,3.597" StartPoint="0.529,-0.077">
+                    <GradientStop Color="#FF3F51B5" Offset="0.029"/>
+                    <GradientStop Color="#FF1A237E" Offset="0.307"/>
+                </LinearGradientBrush>
+            </materialDesign:Card.Background>
+            <Grid>
+                <TextBlock x:Name="textBlock1" TextAlignment="Center" HorizontalAlignment="Center" Margin="0,0,7,0" TextWrapping="Wrap" Text="Maintinance Mode" VerticalAlignment="Top" Height="100" RenderTransformOrigin="0.099,0.8" Width="1193" FontSize="80" Foreground="White" >
+                </TextBlock>
+
+
+            </Grid>
+        </materialDesign:Card>
+
+        <materialDesign:Card Height="611" Margin="10,92,10,0">
+            <Grid>
+                <Label x:Name="label" Content="Server IP :" HorizontalAlignment="Left" Margin="158,43,0,0" VerticalAlignment="Top" Height="38" Width="202" FontSize="24"/>
+                <Label x:Name="label_Copy" Content="Username :" HorizontalAlignment="Left" Margin="158,109,0,0" VerticalAlignment="Top" Height="38" Width="202" FontSize="24"/>
+                <Label x:Name="label_Copy1" Content="Password :" HorizontalAlignment="Left" Margin="158,182,0,0" VerticalAlignment="Top" Height="38" Width="202" FontSize="24"/>
+                <Label x:Name="label_Copy2" Content="Database Name :" HorizontalAlignment="Left" Margin="158,247,0,0" VerticalAlignment="Top" Height="38" Width="202" FontSize="24"/>
+                <TextBox x:Name="server_ip" HorizontalAlignment="Left" Height="38" Margin="438,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="702" FontFamily="Roboto" FontSize="24"/>
+                <TextBox x:Name="username" HorizontalAlignment="Left" Height="38" Margin="438,109,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="702" FontSize="24" FontFamily="Roboto"/>
+                <TextBox x:Name="password" HorizontalAlignment="Left" Height="38" Margin="438,182,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="702" FontFamily="Roboto" FontSize="24"/>
+                <TextBox x:Name="database_name" HorizontalAlignment="Left" Height="38" Margin="438,247,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="702" FontFamily="Roboto" FontSize="24"/>
+                <Label x:Name="label_Copy3" Content="Previous Connection String:" HorizontalAlignment="Left" Margin="158,312,0,0" VerticalAlignment="Top" Height="38" Width="224" FontSize="18"/>
+                <TextBox x:Name="previousString" HorizontalAlignment="Left" Height="38" Margin="438,312,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="702" FontFamily="Roboto" FontSize="24"/>
+                <Button x:Name="update" Content="Update" HorizontalAlignment="Center" Height="58" Margin="0,451,0,0" VerticalAlignment="Top" Width="157"  FontSize="18" Click="update_Click"/>
+                <Label x:Name="label_Copy4" Content="Current Connection String:" HorizontalAlignment="Left" Margin="158,371,0,0" VerticalAlignment="Top" Height="38" Width="275" FontSize="18"/>
+                <TextBox x:Name="currentString" HorizontalAlignment="Left" Height="38" Margin="438,371,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="702" FontFamily="Roboto" FontSize="24"/>
+
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</Page>

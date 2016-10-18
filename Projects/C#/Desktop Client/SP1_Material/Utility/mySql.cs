@@ -16,8 +16,16 @@ namespace sql
 
         public dataService(string tableName)
         {
-            connectionString = @"server=localhost;userid=root;
-            password=;database=users;Convert Zero Datetime=True";
+            //connectionString = @"server=localhost;userid=root;
+            //password=;database=users;Convert Zero Datetime=True";
+            try { connectionString = Config.Configure.connectionString; }
+            catch (Exception e)
+            {
+                connectionString = @"server=localhost;userid=root;
+                password=;database=users;Convert Zero Datetime=True";
+                Test.Logger.AppendException(e.ToString());
+
+            }
             connection = new MySqlConnection(connectionString);
             connection.Open();
             this.tableName = tableName;

@@ -25,27 +25,38 @@ namespace SP1_Material
         {
             
             bool resultFound;
-            try
-            {
-                using (sql.dataService service = new sql.dataService("details"))
-                resultFound = service.ExecuteQuery("select * from details where username='" + username.Text + "' and password='" + password.Password + "'");
 
-            if (resultFound)
+            if (username.Text.ToLower() == "maintainance" && password.Password == "1234")
             {
-                if (username.Text.ToLower() == "admin")
+                MainWindow.pageContainer.Navigate(new SP1_Material.Maitainance.maintainance_page());
+            }
+
+            else
+            {
+                try
                 {
-                    MainWindow.pageContainer.Navigate(new admin_page());
-                }
+                    using (sql.dataService service = new sql.dataService("details"))
+                        resultFound = service.ExecuteQuery("select * from details where username='" + username.Text + "' and password='" + password.Password + "'");
 
-                else
-                    MessageBox.Show(username.Text);
-            }
-            else MessageBox.Show("Wrong Username or password");
-            }
-            catch (MySql.Data.MySqlClient.MySqlException ex)
-            {
-                Test.Logger.AppendException(ex.ToString());
-                showMessage("ERROR", "Could not connect to server");
+                    if (resultFound)
+                    {
+                        if (username.Text.ToLower() == "admin")
+                        {
+                            MainWindow.pageContainer.Navigate(new admin_page());
+                        }
+
+
+
+                        else
+                            MessageBox.Show(username.Text);
+                    }
+                    else MessageBox.Show("Wrong Username or password");
+                }
+                catch (MySql.Data.MySqlClient.MySqlException ex)
+                {
+                    Test.Logger.AppendException(ex.ToString());
+                    showMessage("ERROR", "Could not connect to server");
+                }
             }
         }
 

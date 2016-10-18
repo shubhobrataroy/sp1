@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 
+
 namespace Test
 {
     class Logger

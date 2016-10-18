@@ -21,20 +21,21 @@
     <Grid>
         <materialDesign:Card Height="270" Margin="10,10,10,0">
             <Grid Margin="10,0,-10,0">
-                <TextBox x:Name="textBox" HorizontalAlignment="Center" Height="23" Margin="172,22,62,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="337" TextChanged="textBox_TextChanged"/>
-                <DatePicker HorizontalAlignment="Left" Margin="172,70,0,0" VerticalAlignment="Top" Width="337"/>
-                <DatePicker HorizontalAlignment="Center" Margin="172,120,62,0" VerticalAlignment="Top" Width="337"/>
+                <TextBlock x:Name="suggestor" HorizontalAlignment="Center" Height="23" Margin="352,22,62,0" TextWrapping="Wrap" Text="Suggestor" VerticalAlignment="Top" Width="157" />
+                <TextBox x:Name="username"  HorizontalAlignment="Center" Height="23" Margin="172,22,62,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="337" TextChanged="username_TextChanged" Opacity="0.6"/>
+                <DatePicker Name="startDate" SelectedDateChanged="startDate_SelectedDateChanged" HorizontalAlignment="Left" Margin="172,70,0,0" VerticalAlignment="Top" Width="337" />
+                <DatePicker Name="endDate" SelectedDateChanged="endDate_SelectedDateChanged" HorizontalAlignment="Center" Margin="172,120,62,0" VerticalAlignment="Top" Width="337"/>
                 <Label x:Name="label" Content="Assign To:" HorizontalAlignment="Left" Margin="84,22,0,0" VerticalAlignment="Top" Width="83"/>
                 <Label x:Name="label1" Content="Start Date" HorizontalAlignment="Left" Margin="84,70,0,0" VerticalAlignment="Top" Width="83"/>
                 <Label x:Name="label1_Copy" Content="End Date" HorizontalAlignment="Left" Margin="84,120,0,0" VerticalAlignment="Top" Width="83"/>
 
-                <RichTextBox Opacity="0.8" x:Name="richTextBox" HorizontalAlignment="Left" Height="94" Margin="172,156,0,0" VerticalAlignment="Top" Width="337">
-
-                </RichTextBox>
+                <TextBox Name="description" Opacity="0.8"  HorizontalAlignment="Left" Height="94" Margin="173,161,0,0" VerticalAlignment="Top" Width="337" TextChanged="description_TextChanged">
+                                    
+                </TextBox>
                 <Label x:Name="label1_Copy1" Content="Description:" HorizontalAlignment="Left" Margin="84,156,0,0" VerticalAlignment="Top" Width="83"/>
 
             </Grid>
         </materialDesign:Card>
-        <Button x:Name="button" Content="Assign Task" HorizontalAlignment="Left" Margin="249,294,0,0" VerticalAlignment="Top" Width="130" Height="35"/>
+        <Button x:Name="button" Content="Assign Task" HorizontalAlignment="Left" Margin="249,294,0,0" VerticalAlignment="Top" Width="130" Height="35" Click="button_Click"/>
     </Grid>
 </Controls:MetroWindow>

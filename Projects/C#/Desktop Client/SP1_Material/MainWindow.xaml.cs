@@ -16,6 +16,7 @@ namespace SP1_Material
         {
             InitializeComponent();
             this.WindowState = WindowState.Maximized;
+            Config.Configure.ReadConfiguration();
             pageContainer = container;
             container.Navigate(new login());            
         }
